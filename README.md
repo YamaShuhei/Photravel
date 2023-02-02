@@ -1,24 +1,46 @@
-# README
+# Photravel(映えスポット掲載用のコミュニティサイト)
+## サイト概要
+「**あなたの知ってる映えスポット、みんなに共有しませんか？**」 
+   
+旅行でこれから訪れる土地の写真映えするスポットを共有し合う為のコミュニティサイトです。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+---
+### サイトテーマ
+日本各地のフォトスポット共有サイト
 
-* Ruby version
+---
 
-* System dependencies
 
-* Configuration
+### テーマを選んだ理由  
+私の趣味は旅行と写真撮影で、いつも旅行先を決めるときは写真映えするようなスポットをいくつかツイッターやインスタグラム等のSNSから探し、そこを軸にルートを決める事が多いのです。  
 
-* Database creation
+しかし、そういったSNS上での検索は投稿者の付けたタグやキーワードに反応して表示されるので、場合によっては検索しても表示されず、絶景との出会いを逃している事が多くありました。
 
-* Database initialization
+そこで、そういった悩みを解決する為のサイトを作成してみようと思いました。    
 
-* How to run the test suite
+---  
 
-* Services (job queues, cache servers, search engines, etc.)
+### ターゲットユーザ
+- 写真映えスポットを共有したい方
+- 旅行先の絶景ポイントを探したい方
 
-* Deployment instructions
+---
 
-* ...
+### 主な利用シーン
+- 旅行先の映えスポットを探すことが出来る
+- 自身が撮影した映えスポットを共有することが出来る
+
+## 設計書
+<...>
+
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
