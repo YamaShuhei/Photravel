@@ -28,8 +28,12 @@
 - 自身が見つけた映えスポットを共有することが出来る
 
 ## 設計書
-###ER図
-![Photravel(会員)画面遷移図 drawio ](https://user-images.githubusercontent.com/119114032/216837791-010f9f75-dbb8-4d4a-a9c6-6178bf49d51b.png)
+### ER図
+
+<img src="https://user-images.githubusercontent.com/119114032/216837791-010f9f75-dbb8-4d4a-a9c6-6178bf49d51b.png" width="650">
+
+<img src="https://user-images.githubusercontent.com/119114032/216838968-d2e0f352-c735-4533-a88d-ec27062f24df.png" width="650">
+
 
 ## 開発環境
 - OS：Linux(CentOS)
