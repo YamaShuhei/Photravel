@@ -1,0 +1,38 @@
+<h2>Sign up</h2>
+
+<%= form_with model: @user, url: user_registration_path do |f| %>
+  <%= render "public/shared/error_messages", resource: resource %>
+
+  <!--メールアドレス入力欄-->
+  <div class="field">
+    <%= f.label :email, "メールアドレス" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+  
+  <!--名前入力欄-->
+  <div class="field">
+    <%= f.label :name, "ユーザー名" %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <!--パスワード入力欄-->
+  <div class="field">
+    <%= f.label :password, "パスワード" %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> 文字以上)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+  
+  <!--パスワード確認-->
+  <div class="field">
+    <%= f.label :password_confirmation, "パスワード確認" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "登録" %>
+  </div>
+<% end %>
+
+<%= render "public/shared/links" %>
