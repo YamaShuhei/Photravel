@@ -1,9 +1,10 @@
 <header class="shadow-sm">
-  <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <div class="container">
-      <%= link_to "ホームページ", "/" %>
+  <!--メニューバー-->
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <%= link_to image_tag("photravel.png", class:"header_logo", alt:"Photravel"), "/" %>
       
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse d-flex flex-row-reverse " id="navbarNav">
         <ul class="navbar-nav">
         <!--ユーザー用ヘッダー-->
         <% if user_signed_in? %>
@@ -25,4 +26,17 @@
       
     </div>
   </nav>
+  
+  <!--検索・投稿フォーム-->
+  <div class="container-fluid border-top py-3">
+    <div class="row justify-content-md-center">
+      <%= link_to "写真を探す", posts_path, class:"col col-lg-2" %>
+      <div class="search-form col-md-auto">
+        <input size="30" type="text" placeholder="検索窓"/>
+        <button>検索する</button>
+      </div>
+      <%= link_to "投稿する", new_post_path, class:"col col-lg-2" %>
+    </div>
+  </div>
+  
 </header>

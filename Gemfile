@@ -55,6 +55,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+#環境変数
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
@@ -63,6 +64,10 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+#devise
 gem "devise"
+#javascript 変数
 gem 'gon'
+#緯度経度情報の取得
 gem 'geocoder'
+
