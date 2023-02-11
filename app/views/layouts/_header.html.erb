@@ -1,0 +1,28 @@
+<header class="shadow-sm">
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container">
+      <%= link_to "ホームページ", "/" %>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+        <!--ユーザー用ヘッダー-->
+        <% if user_signed_in? %>
+          <li class="nav-item"><%= link_to "マイページ", user_path(current_user), method: :get, class: 'nav-link text-dark' %></li>
+          <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to "ログイン", new_user_session_path, method: :get, class: 'nav-link text-dark' %></li>
+          <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, method: :get, class: 'nav-link text-dark' %></li>
+        <% end %>
+        
+        <!--管理者用ヘッダー-->
+        <% if admin_signed_in? %>
+          <li class="nav-item"><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to "管理者ログイン", new_admin_session_path, method: :get, class: 'nav-link text-dark' %></li>
+        <% end %>
+        </ul>
+      </div>
+      
+    </div>
+  </nav>
+</header>
