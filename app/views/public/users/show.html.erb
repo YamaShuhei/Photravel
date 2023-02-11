@@ -1,0 +1,44 @@
+<div class ="container" >
+<div class="h5 d-inline-block h1 p-1 border rounded font-weight-bold bg-light"><%= @user.name %></div>
+<% if @user.present? %>
+
+<!--ユーザー情報欄-->
+<div id ="userMenu" class="p-2 shadow-sm">
+  <div class="row">
+    <div class="col-4 col-md-3">
+      <%= image_tag @user.get_profile_image(200,200) %>
+    </div>
+    <div class="col-8 col-md-9">
+      <!--ユーザー名-->
+      <div class="row">
+        <p class="col-2 col-sm-4">ユーザー名</p>
+        <p class="col-8"><%= @user.name %></p>
+      </div>
+      <!--投稿件数、フォローフォロワ-->
+      <div class="row">
+        <p class="col">投稿<%= @user.posts.count %>件</p>
+        <p class="col">フォロー<%= @user.followings.count %>人</p>
+        <p class="col">フォロワー<%= @user.followers.count %>人</p>
+      </div>
+  
+      <!--自己紹介文（登録がなければその旨表示）-->
+      <div class="row">
+        <% if @user.introduction.present? %>
+          <p class="col-2 col-sm-4">自己紹介文</p>
+          <div class="col-8"><%= @user.introduction %></p>
+        <% else %>
+          <p>自己紹介文の登録がありません。</p>
+        <% end %>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <% else %>
+  
+  <p>ユーザー登録がありません。</p>
+  
+  <% end %>
+  </div>
+</div>

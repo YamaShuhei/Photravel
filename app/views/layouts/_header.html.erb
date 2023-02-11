@@ -1,0 +1,42 @@
+<header class="shadow-sm">
+  <!--メニューバー-->
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <%= link_to image_tag("photravel.png", class:"header_logo", alt:"Photravel"), "/" %>
+      
+      <div class="collapse navbar-collapse d-flex flex-row-reverse " id="navbarNav">
+        <ul class="navbar-nav">
+        <!--ユーザー用ヘッダー-->
+        <% if user_signed_in? %>
+          <li class="nav-item"><%= link_to "マイページ", user_path(current_user), method: :get, class: 'nav-link text-dark' %></li>
+          <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to "ログイン", new_user_session_path, method: :get, class: 'nav-link text-dark' %></li>
+          <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, method: :get, class: 'nav-link text-dark' %></li>
+        <% end %>
+        
+        <!--管理者用ヘッダー-->
+        <% if admin_signed_in? %>
+          <li class="nav-item"><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to "管理者ログイン", new_admin_session_path, method: :get, class: 'nav-link text-dark' %></li>
+        <% end %>
+        </ul>
+      </div>
+      
+    </div>
+  </nav>
+  
+  <!--検索・投稿フォーム-->
+  <div class="container-fluid border-top py-3">
+    <div class="row justify-content-md-center">
+      <%= link_to "写真を探す", posts_path, class:"col col-lg-2" %>
+      <div class="search-form col-md-auto">
+        <input size="30" type="text" placeholder="検索窓"/>
+        <button>検索する</button>
+      </div>
+      <%= link_to "投稿する", new_post_path, class:"col col-lg-2" %>
+    </div>
+  </div>
+  
+</header>
