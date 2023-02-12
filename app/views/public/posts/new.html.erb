@@ -6,24 +6,36 @@
   
   <!--投稿画面-->
   <div class="post-form">
-    <%= form_with model: @post do |f| %>
-    
+    <%= form_with(model: @post,local: true,multipart: true) do |f| %>
     <div class="">
       <%= f.label :title, "タイトル" %>
       <%= f.text_field :title, placeholder:"タイトルを入力して下さい" %>
     </div>
-    
     <div class="">
       <%= f.label :caption, "説明文" %>
       <%= f.text_area :caption, placeholder:"説明文を記入しましょう！" %>
     </div>
-    
     <div class="">
       <%= f.label :post_image, "投稿写真" %>
       <%= f.file_field :post_image, accept: "image/*" %>
     </div>
+    <!--マップ表示-->
     
+    <div class="input-field">
+      <input type="text" id="address" placeholder="地名、施設名などを入力するか、地図をクリックしてマーカーを立ててください">
+      <label>場所</label>
+      <a class="btn" onclick="codeAddress()">地図検索</a>
+      <a id="del" class="btn marker-delete right" onclick="deleteMarker()">
+      <i class="fas fa-map-marker-alt fas-2x" style="color:red"></i>削除
+      </a>
+    </div>
+    <div>マップ</div>
     <div id="map"></div>
+    <%= f.fields_for :map, @post.build_map do |map| %>
+      <%= map.hidden_field :latitude %>
+      <%= map.hidden_field :longitude %>
+      <%= map.hidden_field :address %>
+    <% end %>
     
     
     <div>
@@ -36,14 +48,96 @@
   </div>
 </div>
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= GOOGLE_MAP_API %>&callback=initMap" async defer></script>   
 <script>
-let map
+var marker
+var myLatLng
+var map
+var map_lat
+var map_lng
+var map_add
+var address
 
-function initMap (){
-  myLatLng = {lat: 35.68090045006303, lng: 139.76690798417752}
-  map = new google.maps.Map(document.getElementById('map'), {
+function initMap(){
+   myLatLng = {lat: 35.68090045006303, lng: 139.76690798417752}
+   marker = new google.maps.Marker();
+   map_lat = document.getElementById('post_map_latitude')
+   map_lng = document.getElementById('post_map_longitude')
+   map_add = document.getElementById('post_map_address')
+   map = new google.maps.Map(document.getElementById('map'), {
   center: myLatLng,
   zoom: 12
   });
+
+ google.maps.event.addListener(map, 'click', mylistener);
+
+    //クリックしたときの処理
+  function mylistener(event){
+    //markerの位置を設定
+    //event.latLng.lat()でクリックしたところの緯度を取得
+    marker.setPosition(new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()));
+    //marker設置
+    marker.setMap(map);    
+    map_lat.value = event.latLng.lat();
+    map_lng.value = event.latLng.lng();
+    console.log(map_lat.value,map_lng.value);
+    
+    
+    let latLngInput = new google.maps.LatLng(map_lat.value,  map_lng.value);
+    // マーカークリック時に住所取得
+    geocoder = new google.maps.Geocoder()
+    
+    geocoder.geocode( { 
+    'latLng': latLngInput,
+    }, function(results, status) {
+    if (status == 'OK') {
+      address = results[0].formatted_address;
+      map.setCenter(results[0].geometry.location);
+      map_result = results[0].geometry.location;
+      map_lat.value = map_result.lat();
+      map_lng.value = map_result.lng();
+      marker.setPosition(new google.maps.LatLng(map_result.lat(), map_result.lng()));
+      marker.setMap(map);
+      console.log(map_lat.value,map_lng.value);
+    } else {
+      alert('該当する結果がありませんでした');
+      initMap();
+    }
+    document.getElementById('post_map_address').value = address;
+  });   
+    
+  }
+}
+
+function deleteMarker(){
+  marker.setMap(null);
+  map_lat.value = "";
+  map_lng.value = "";
+}
+
+function codeAddress(){
+  geocoder = new google.maps.Geocoder()
+  let inputAddress = document.getElementById('address').value;
+  geocoder.geocode( { 
+    'address': inputAddress,
+     'region': 'jp'
+    }, function(results, status) {
+       address = "";
+    if (status == 'OK') {
+      address = results[0].formatted_address;
+      map.setCenter(results[0].geometry.location);
+      map_result = results[0].geometry.location;
+      map_lat.value = map_result.lat();
+      map_lng.value = map_result.lng();
+      marker.setPosition(new google.maps.LatLng(map_result.lat(), map_result.lng()));
+      marker.setMap(map);
+      console.log(map_lat.value,map_lng.value);
+    } else {
+      alert('該当する結果がありませんでした');
+      initMap();
+    }
+    document.getElementById('post_map_address').value = address;
+  });   
+}
+
+
 </script>

@@ -7,7 +7,7 @@
     <% @posts.each do |post| %>
     <div class="d-inline-block img-thumbnail mx-1 my-2">
     <%= link_to post_path(post.id) do %>
-      <%= image_tag post.post_image ,class:"posts"%><br>
+      <%= image_tag post.post_image,class:"posts"%><br>
       <%= post.title %>
       <div>
       タグ：
