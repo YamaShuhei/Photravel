@@ -1,2 +1,49 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<div class="container">
+  <!--ページタイトル-->
+  <div class="row">
+    <div class="h3 border rounded">写真投稿</div>
+  </div>
+  
+  <!--投稿画面-->
+  <div class="post-form">
+    <%= form_with model: @post do |f| %>
+    
+    <div class="">
+      <%= f.label :title, "タイトル" %>
+      <%= f.text_field :title, placeholder:"タイトルを入力して下さい" %>
+    </div>
+    
+    <div class="">
+      <%= f.label :caption, "説明文" %>
+      <%= f.text_area :caption, placeholder:"説明文を記入しましょう！" %>
+    </div>
+    
+    <div class="">
+      <%= f.label :post_image, "投稿写真" %>
+      <%= f.file_field :post_image, accept: "image/*" %>
+    </div>
+    
+    <div id="map"></div>
+    
+    
+    <div>
+      <%= f.label :name, "タグ（半角スペースで区切ると複数のタグを登録できます" %>
+      <%= f.text_field :name, placeholder:"例：自然 動物　など..." %>
+    </div>
+    
+    <%= f.submit "投稿する" %>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= GOOGLE_MAP_API %>&callback=initMap" async defer></script>   
+<script>
+let map
+
+function initMap (){
+  myLatLng = {lat: 35.68090045006303, lng: 139.76690798417752}
+  map = new google.maps.Map(document.getElementById('map'), {
+  center: myLatLng,
+  zoom: 12
+  });
+</script>

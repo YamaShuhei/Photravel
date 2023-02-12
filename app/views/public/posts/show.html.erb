@@ -1,2 +1,16 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="投稿詳細">
+    
+  <%= @post.title %>
+  <%= link_to "編集画面へ", edit_post_path(@post.id) %>
+  
+  <% @post_tags.each do |tag| %>
+    <%=tag.name%><%="(#{tag.posts.count})" %>
+    
+  <% end %>
+    
+  </div>
+  
+  
+  
+</div>

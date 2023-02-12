@@ -1,2 +1,19 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class="container">
+  <div>編集画面です</div>
+  
+  <div class="">
+    <%= form_with model:@post do |f| %>
+      <div class="field">
+        <%= f.label"タグ：半角スペースで区切ると複数タグ登録)" %>
+        <%= f.text_field :name,value: @tag_list,class:"form-control"%>
+      </div>
+    
+    　<div class="actions" style="margin:20px 0;">
+        <%= f.submit "投稿",class:"btn btn-outline-primary btn-block" %>
+      </div>
+    
+    <% end %>
+  </div>
+  
+  
+</div>
