@@ -1,32 +1,10 @@
 /*global $*/
-$( () =>{
-
-  
-});
-
-//枠外クリックした場合非表示に
-$(document).on('click', function(e) {
-	//クリックされた場所の判定
-	if(!$(e.target).closest('.profileMenu').length && !$(e.target).closest('#next-btn').length){
-		$('.profileMenu-back').fadeOut();
-	}else if($(e.target).closest('#next-btn').length){
-		// ３．ポップアップの表示状態の判定
-		if($('.profileMenu-back').is(':hidden')){
-			$('.profileMenu-back').fadeIn();
-		}else{
-			$('.profileMenu-back').fadeOut();
-		}
-	}else if($(e.target).closest('#close-btn').length){
-		if($('.profileMenu-back').is(':visible')){
-			$('.profileMenu-back').fadeOut();
-		}
-	}
-});
 
 
 
-// プレビュー画像表示用
-if (document.URL.match(/sign_up/) || document.URL.match(/new/)){
+// サインアップ用
+if (document.URL.match(/sign_up/)){
+  // プレビュー画像表示用
   document.addEventListener('DOMContentLoaded', () => {
       const createImageHTML = (blob) => {  
       const imageElement = document.getElementById('img-prev'); 
@@ -46,4 +24,23 @@ if (document.URL.match(/sign_up/) || document.URL.match(/new/)){
       createImageHTML(blob); 
     });
   });
+  
+  // 枠外クリックで非表示に
+  $(document).on('click', function(e) {
+	//クリックされた場所の判定
+	if(!$(e.target).closest('.profileMenu').length && !$(e.target).closest('#next-btn').length){
+		$('.profileMenu-back').fadeOut();
+	}else if($(e.target).closest('#next-btn').length){
+		// ３．ポップアップの表示状態の判定
+		if($('.profileMenu-back').is(':hidden')){
+			$('.profileMenu-back').fadeIn();
+		}else{
+			$('.profileMenu-back').fadeOut();
+		}
+	}else if($(e.target).closest('#close-btn').length){
+		if($('.profileMenu-back').is(':visible')){
+			$('.profileMenu-back').fadeOut();
+		}
+	}
+});
 }

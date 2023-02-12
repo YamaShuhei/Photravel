@@ -12,21 +12,32 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
-    GOOGLE_MAP_API=ENV["GOOGLE_API_KEY"]
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)#Post.new(post_params)
     @post.user_id = current_user.id
     tag_list = params[:post][:name].split(' ')
     
     if @post.save
+      # マップ保存
+      latitude = params[:post][:map][:latitude]
+      longitude = params[:post][:map][:longitude]
+      address = params[:post][:map][:address]
+      unless latitude.empty? && longitude.empty?
+      @map = @post.build_map(
+        latitude: latitude,
+        longitude: longitude,
+        address: address
+      )
+      @map.save
+      # タグ保存
       @post.save_tag(tag_list)
       redirect_to post_path(@post.id),notice:"投稿しました"
     else
-      redirect_to request.referer
+        redirect_to request.referer
     end
-    
+    end
   end
 
   def edit
@@ -61,7 +72,7 @@ class Public::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:title, :caption, :post_image )
+    params.require(:post).permit(:title, :caption, :post_image, map_attributes:[:id, :address, :latitude, :longitude] )
   end
   
 end

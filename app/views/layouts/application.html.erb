@@ -15,5 +15,6 @@
     <div class="mt-5 mb-auto">
       <%= yield %>
     </div>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY']%>&callback=initMap" async defer></script>   
   </body>
 </html>
