@@ -78,3 +78,34 @@ a.btn-border {
    height: 600px;
   width: 600px;
 }
+
+.img-reg{
+  border-top: solid;
+  border-bottom: solid;
+}
+
+.post-img{
+  width: auto;
+  max-height: 600px;
+}
+
+
+
+#post-caption{
+  width: 50%;
+
+}
+
+.post-caption-val{
+  min-height: 110px;
+  height: auto ;
+}
+
+#post-map{
+  width: 350px;
+  height: 300px;
+}
+
+#post-detail{
+  width: 70% ;
+}

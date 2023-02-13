@@ -8,6 +8,10 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     # @post_comment=PostComment.new
     @post_tags = @post.tags
+    @lat = @post.map.latitude
+    @lng = @post.map.longitude
+    gon.lat = @lat
+    gon.lng = @lng
   end
 
   def new
@@ -24,7 +28,7 @@ class Public::PostsController < ApplicationController
       latitude = params[:post][:map][:latitude]
       longitude = params[:post][:map][:longitude]
       address = params[:post][:map][:address]
-      unless latitude.empty? && longitude.empty?
+    unless latitude.empty? && longitude.empty?
       @map = @post.build_map(
         latitude: latitude,
         longitude: longitude,
@@ -34,9 +38,9 @@ class Public::PostsController < ApplicationController
       # タグ保存
       @post.save_tag(tag_list)
       redirect_to post_path(@post.id),notice:"投稿しました"
-    else
-        redirect_to request.referer
     end
+    else
+      redirect_to request.referer
     end
   end
 

@@ -1,16 +1,90 @@
-<div class="container">
-  <div class="投稿詳細">
+<div class="container-fluid px-0">
+  <div class="text-center">
     
-  <%= @post.title %>
-  <%= link_to "編集画面へ", edit_post_path(@post.id) %>
-  
-  <% @post_tags.each do |tag| %>
-    <%=tag.name%><%="(#{tag.posts.count})" %>
+    <!--メニュー上部-->
+    <div class="row align-items-center justify-content-around">
+      <!--タイトル部分-->
+      <div class="col-8">
+        <div class="row">
+          <div class="text-left h3" id="post-title"><%= @post.title %></div>
+      <!--ログインユーザーだった場合編集画面へ-->
+          <% if @post.user_id == current_user.id %>
+            <%= link_to "編集する", edit_post_path(@post.id), class:"btn btn-secondary"%>
+          <% end %>
+          </div>
+       </div>
+      <!--ユーザー情報-->
+      <div class="col-3">
+      <%= link_to user_path(@post.user_id) do %>
+        <%= image_tag @post.user.get_profile_image(75,75), class:"border rounded-circle mr-2" %><span class="h5"><%= @post.user.name %></span>
+      <% end %>
+      </div>
+    </div>
     
-  <% end %>
+    <!--タグ-->
+    <div class="row ml-4 mb-2">登録タグ：
+      <div class="col-8 text-left">
+        <% @post_tags.each do |tag| %>
+        <div class="d-inline-block border rounded mr-2 bg-white">
+          <%=tag.name%><%="(#{tag.posts.count})" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+      
     
+    <div class="bg-dark img-reg">
+      <div class="img my-2">
+          <%= image_tag @post.post_image, class:"img-fluid post-img" %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4" id="post-detail">
+  <div class="shadow-sm rounded bg-white p-3">
+    <div class="h3">投稿詳細</div>
+    <div class="col-6">
+      <div class="d-inline-block" id="post-caption">
+        <div class="h5">説明文</div>
+        <div class="border post-caption-val"><%= @post.caption %></div>
+      </div>
+    </div>
+    
+    <div class="col-12">
+      <div>撮影地：<%= @post.map.address %></div>
+      <div id="post-map"></div>
+    </div>
+    
+
+      
   </div>
   
-  
-  
+
+    
+
+
 </div>
+
+
+
+
+
+<script>
+var marker
+var myLatLng
+var map
+
+function initMap(){
+   myLatLng = new google.maps.LatLng({lat: gon.lat, lng: gon.lng});
+   map = new google.maps.Map(document.getElementById('post-map'), {
+   center: myLatLng,
+   zoom: 12,
+   mapTypeControl: false
+  });
+     marker = new google.maps.Marker({
+     position: myLatLng,
+     map: map});
+}
+</script>

@@ -118,8 +118,7 @@ function codeAddress(){
   geocoder = new google.maps.Geocoder()
   let inputAddress = document.getElementById('address').value;
   geocoder.geocode( { 
-    'address': inputAddress,
-     'region': 'jp'
+    'address': inputAddress
     }, function(results, status) {
        address = "";
     if (status == 'OK') {
