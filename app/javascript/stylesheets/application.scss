@@ -78,3 +78,40 @@ a.btn-border {
    height: 600px;
   width: 600px;
 }
+
+.img-reg{
+  border-top: solid;
+  border-bottom: solid;
+}
+
+#post-detail{
+  width: 95%;
+}
+
+.post-img{
+  width: auto;
+  max-height: 600px;
+}
+
+.post-caption-val{
+  min-height: 110px;
+  height: auto ;
+}
+
+#map-info{
+  height: 400px;
+}
+
+#post-map{
+  width: 250px;
+  height: 200px;
+}
+
+.ruled-line{
+ width: 100%;
+ background-image : linear-gradient(to right, #9d9d9dad 13px, transparent 2px);
+ background-size: 34px 3px;
+ background-repeat: repeat-x; 
+ background-position: left bottom;
+ color:#f8f9fa;
+}

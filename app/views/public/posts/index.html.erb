@@ -9,10 +9,6 @@
     <%= link_to post_path(post.id) do %>
       <%= image_tag post.post_image,class:"posts"%><br>
       <%= post.title %>
-      <div>
-      タグ：
-      <%= post.tags.map(&:name).join(' ') %>
-      </div>
     <% end %>
     </div>
     <% end %>

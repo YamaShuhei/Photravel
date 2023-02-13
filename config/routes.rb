@@ -14,8 +14,10 @@ Rails.application.routes.draw do
 # ユーザー側のルーティング設定
 scope module: :public do
   root to: 'homes#top'
-  resources :posts
-  resources :users, only:[:show, :edit]
+  resources :posts, only:[:new, :create, :index, :show, :edit, :update, :destroy] do
+    resources :comments, only: [:create, :destroy]
+  end
+  resources :users, only: [:show, :edit]
 
 end
 

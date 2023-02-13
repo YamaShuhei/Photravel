@@ -56,6 +56,7 @@ var map_lat
 var map_lng
 var map_add
 var address
+var fixaddress
 
 function initMap(){
    myLatLng = {lat: 35.68090045006303, lng: 139.76690798417752}
@@ -91,6 +92,7 @@ function initMap(){
     }, function(results, status) {
     if (status == 'OK') {
       address = results[0].formatted_address;
+      fixaddress = address.replace( /........日本、|日本、|〒.........|/g, "");
       map.setCenter(results[0].geometry.location);
       map_result = results[0].geometry.location;
       map_lat.value = map_result.lat();
@@ -98,11 +100,12 @@ function initMap(){
       marker.setPosition(new google.maps.LatLng(map_result.lat(), map_result.lng()));
       marker.setMap(map);
       console.log(map_lat.value,map_lng.value);
+      console.log(fixaddress);
     } else {
       alert('該当する結果がありませんでした');
       initMap();
     }
-    document.getElementById('post_map_address').value = address;
+    document.getElementById('post_map_address').value = fixaddress;
   });   
     
   }
@@ -118,8 +121,7 @@ function codeAddress(){
   geocoder = new google.maps.Geocoder()
   let inputAddress = document.getElementById('address').value;
   geocoder.geocode( { 
-    'address': inputAddress,
-     'region': 'jp'
+    'address': inputAddress
     }, function(results, status) {
        address = "";
     if (status == 'OK') {
