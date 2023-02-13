@@ -84,16 +84,13 @@ a.btn-border {
   border-bottom: solid;
 }
 
+#post-detail{
+  width: 95%;
+}
+
 .post-img{
   width: auto;
   max-height: 600px;
-}
-
-
-
-#post-caption{
-  width: 50%;
-
 }
 
 .post-caption-val{
@@ -101,11 +98,20 @@ a.btn-border {
   height: auto ;
 }
 
-#post-map{
-  width: 350px;
-  height: 300px;
+#map-info{
+  height: 400px;
 }
 
-#post-detail{
-  width: 70% ;
+#post-map{
+  width: 250px;
+  height: 200px;
+}
+
+.ruled-line{
+ width: 100%;
+ background-image : linear-gradient(to right, #9d9d9dad 13px, transparent 2px);
+ background-size: 34px 3px;
+ background-repeat: repeat-x; 
+ background-position: left bottom;
+ color:#f8f9fa;
 }

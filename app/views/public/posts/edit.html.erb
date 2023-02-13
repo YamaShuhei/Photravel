@@ -4,7 +4,11 @@
   <div class="">
     <%= form_with model:@post do |f| %>
       <div class="field">
-        <%= f.label"タグ：半角スペースで区切ると複数タグ登録)" %>
+        <%= f.label :title, "タイトル"%>
+        <%= f.text_field :title %>
+        
+        
+        <%= f.label :name, "タグ：半角スペースで区切ると複数タグ登録)" %>
         <%= f.text_field :name,value: @tag_list,class:"form-control"%>
       </div>
     

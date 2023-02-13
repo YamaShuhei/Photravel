@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  
   def index
     @posts = Post.all
     @tags=Tag.all
@@ -12,6 +13,8 @@ class Public::PostsController < ApplicationController
     @lng = @post.map.longitude
     gon.lat = @lat
     gon.lng = @lng
+    @comments = @post.comments
+    @comment = current_user.comments.new
   end
 
   def new
@@ -45,7 +48,6 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    
     @post = Post.find(params[:id])
     # pluckはmapと同じ意味です！！
     @tag_list=@post.tags.pluck(:name).join(' ')
@@ -65,6 +67,9 @@ class Public::PostsController < ApplicationController
     else
       redirect_to request.referer
     end
+  end
+  
+  def destroy
   end
 
   def ranking
