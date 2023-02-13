@@ -49,7 +49,10 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    # pluckはmapと同じ意味です！！
+    @lat = @post.map.latitude
+    @lng = @post.map.longitude
+    gon.lat = @lat
+    gon.lng = @lng
     @tag_list=@post.tags.pluck(:name).join(' ')
   end
   
@@ -57,8 +60,17 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     tag_list=params[:post][:name].split(' ')
     if @post.update(post_params)
+      latitude = params[:post][:map][:latitude]
+      longitude = params[:post][:map][:longitude]
+      address = params[:post][:map][:address]
+      unless latitude.empty? && longitude.empty?
+      @map = @post.map.update(
+        latitude: latitude,
+        longitude: longitude,
+        address: address
+      ) 
+      end
        @old_relations=PostTag.where(post_id: @post.id)
-       
         @old_relations.each do |relation|
           relation.delete
         end         

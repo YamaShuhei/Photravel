@@ -126,6 +126,7 @@ function codeAddress(){
        address = "";
     if (status == 'OK') {
       address = results[0].formatted_address;
+      fixaddress = address.replace( /........日本、|日本、|〒.........|/g, "");
       map.setCenter(results[0].geometry.location);
       map_result = results[0].geometry.location;
       map_lat.value = map_result.lat();
@@ -133,11 +134,12 @@ function codeAddress(){
       marker.setPosition(new google.maps.LatLng(map_result.lat(), map_result.lng()));
       marker.setMap(map);
       console.log(map_lat.value,map_lng.value);
+      console.log(fixaddress);
     } else {
       alert('該当する結果がありませんでした');
       initMap();
     }
-    document.getElementById('post_map_address').value = address;
+    document.getElementById('post_map_address').value = fixaddress;
   });   
 }
 

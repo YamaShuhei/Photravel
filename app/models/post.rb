@@ -36,7 +36,7 @@ class Post < ApplicationRecord
       new_post_tag = Tag.find_or_create_by(name: new)
       self.tags << new_post_tag
    end
-end
+  end
   
   
   def favorited_by?(user)
