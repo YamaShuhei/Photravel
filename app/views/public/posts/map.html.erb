@@ -1,101 +1,93 @@
+<div class="position-relative">
+  <!--マップ-->
+  <div id="map" style="height:90vh;" class="position-absolute" data-turbolinks='false'></div>
+  <!--検索フォーム-->
+  <div class="d-inline-block bg-light border p-2 position-absolute map-searchform  ">
+    <label class="font-weight-bold mx-1">場所検索</label>
+    <input type="text" id="address" placeholder="地名・住所を入力">
+    <a class="btn btn-sm btn-success mx-1" onclick="codeAddress()">地図検索</a>  
+  </div>
+</div>
 
 
-<div id="map" style="height:90vh; "></div>
+
 
 <script>
-var marker
-var myLatLng
+let marker = [];
 var map
-var map_lat
-var map_lng
-var map_add
-var address
-var fixaddress
+let infoWindow = [];
+let markerData = gon.maps;
+let postData = gon.posts;
 
 function initMap(){
   
-   myLatLng = {lat: 35.68090045006303, lng: 139.76690798417752}
-   marker = new google.maps.Marker();
-   map_lat = document.getElementById('post_map_latitude')
-   map_lng = document.getElementById('post_map_longitude')
-   map_add = document.getElementById('post_map_address')
-   map = new google.maps.Map(document.getElementById('map'), {
-  center: myLatLng,
+  geocoder = new google.maps.Geocoder()
+  
+  map = new google.maps.Map(document.getElementById('map'), {
+  center: { lat: 35.6585, lng: 139.7486},
   zoom: 12,
   streetViewControl: false,
   mapTypeControl: false
   });
 
- google.maps.event.addListener(map, 'click', mylistener);
-
-
-
-    //クリックしたときの処理
-  function mylistener(event){
-    //markerの位置を設定
-    //event.latLng.lat()でクリックしたところの緯度を取得
-    marker.setPosition(new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()));
-    //marker設置
-    marker.setMap(map);    
-    map_lat.value = event.latLng.lat();
-    map_lng.value = event.latLng.lng();
-    console.log(map_lat.value,map_lng.value);
+  // 登録されているマップデータの数繰り返しマーカー作成
+  for (var i = 0; i < markerData.length; i++){
+    let id = markerData[i]['id']
+    let postId = markerData[i]['post_id']
+    let contentStr = 
+    `<a href='/posts/${postId}'>` +
+    `<div class="text-center">「${postData[i]['title']}」</div>` +
+    `<div>${markerData[i]['address']}</div>`;
     
-       let latLngInput = new google.maps.LatLng(map_lat.value,  map_lng.value);
-    // マーカークリック時に住所取得
-    geocoder = new google.maps.Geocoder()
     
-    geocoder.geocode( { 
-    'latLng': latLngInput,
-    }, function(results, status) {
-    if (status == 'OK') {
-      address = results[0].formatted_address;
-      fixaddress = address.replace( /........日本、|日本、|〒.........|/g, "");
-      map.setCenter(results[0].geometry.location);
-      map_result = results[0].geometry.location;
-      map_lat.value = map_result.lat();
-      map_lng.value = map_result.lng();
-      marker.setPosition(new google.maps.LatLng(map_result.lat(), map_result.lng()));
-      marker.setMap(map);
-      console.log(map_lat.value,map_lng.value);
-      console.log(fixaddress);
-    } else {
-      alert('該当する結果がありませんでした');
-      initMap();
-    }
-    document.getElementById('post_map_address').value = fixaddress;
+    // 各データーの緯度経度を計算
+    markerLatLng = new google.maps.LatLng({
+      lat: markerData[i]['latitude'],
+      lng: markerData[i]['longitude']
+      
+    });
     
-
-  });   
+    // 各地店のマーカーを作成
+    marker[i] = new google.maps.Marker({
+      position: markerLatLng,
+      map: map
+    });
     
+    // 各地点の吹き出しを作成
+    infoWindow[i] = new google.maps.InfoWindow({
+      content: contentStr
+      
+    });
+    
+    markerEvent(i);
   }
+
+function markerEvent(i){
+  marker[i].addListener('click', function(){
+    infoWindow[i].open(map, marker[i]);
+  });
   
+  map.addListener('click', function() {
+    infoWindow[i].close(map, marker[i]);
+  });
+}
 }
 
 
+// 地図検索
 function codeAddress(){
   geocoder = new google.maps.Geocoder()
   let inputAddress = document.getElementById('address').value;
   geocoder.geocode( { 
     'address': inputAddress
     }, function(results, status) {
-       address = "";
+      address = "";
     if (status == 'OK') {
-      address = results[0].formatted_address;
-      fixaddress = address.replace( /........日本、|日本、|〒.........|/g, "");
       map.setCenter(results[0].geometry.location);
-      map_result = results[0].geometry.location;
-      map_lat.value = map_result.lat();
-      map_lng.value = map_result.lng();
-      marker.setPosition(new google.maps.LatLng(map_result.lat(), map_result.lng()));
-      marker.setMap(map);
-      console.log(map_lat.value,map_lng.value);
-      console.log(fixaddress);
     } else {
       alert('該当する結果がありませんでした');
       initMap();
     }
-    document.getElementById('post_map_address').value = fixaddress;
   });   
 }
 
