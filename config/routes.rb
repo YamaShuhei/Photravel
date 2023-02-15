@@ -15,7 +15,13 @@ Rails.application.routes.draw do
 scope module: :public do
   root to: 'homes#top'
   resources :posts, only:[:new, :create, :index, :show, :edit, :update, :destroy] do
+    get 'show_detail'
     resources :comments, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy]
+    collection do
+      get 'search'
+      get 'map'
+    end
   end
   resources :users, only: [:show, :edit]
 

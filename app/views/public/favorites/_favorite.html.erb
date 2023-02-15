@@ -1,0 +1,21 @@
+<!--いいねボタンテンプレート-->
+
+<% if !user_signed_in? %>
+  <div  class="mt-3 pl-3 pr-4 py-2 d-inline-block fav-btn">
+    <i class="fa fa-heart unfavorite-btn"></i><span class="text-muted"><%= post.favorites.length %></span>
+  </div>
+<% elsif current_user.favorited_by?(post.id) %>
+    <%= link_to post_favorite_path(post, post.favorites), class: "favorite-link text-decoration-none", method: :delete, remote: true do %>
+    <div  class="mt-3 pl-3 pr-4 py-2 d-inline-block fav-btn">
+    <i class="fa fa-heart unfavorite-btn"></i> <span class="text-muted"><%= post.favorites.length %></span>
+    </div>
+    <% end %>
+
+<% else %>
+    <%= link_to post_favorites_path(post), class: "favorite-link text-decoration-none", method: :post, remote: true do %>
+      <div  class="mt-3 pl-3 pr-4 py-2 d-inline-block fav-btn">
+      <i class="fa fa-heart favorite-btn"></i> <span class="text-muted"><%= post.favorites.length %></span>
+      </div>
+    <% end %>
+<% end %>
+

@@ -1,54 +1,6 @@
-<div class="container-fluid" id="post-container">
-    <!--投稿画面-->
-    <%= form_with(model: @post,local: true,multipart: true) do |f| %>
-    <div class="ml-2 mt-2 d-inline-block h3 border rounded">写真投稿</div>
-    <div class="w-50 bg-white border rounded shadow-sm p-2">
-      <div>
-        <%= render 'layouts/error_messages', model: f.object %>
-      </div>
-      <div class="">
-        <%= f.label :title, "タイトル" %>
-        <%= f.text_field :title, placeholder:"撮影地を入れて下さい" %>
-      </div>
-      <div class="">
-        <%= f.label :caption, "説明文" %>
-        <%= f.text_area :caption, placeholder:"説明文を記入しましょう！" %>
-      </div>
-      <div class="">
-        <%= f.label :post_image, "投稿写真" %>
-        <%= f.file_field :post_image, accept: "image/*" %>
-      </div>
-      <div>
-        <%= f.label :name, "タグ（半角スペースで区切ると複数のタグを登録できます" %>
-        <%= f.text_field :name, placeholder:"例：自然 動物　など..." %>
-      </div>
-    </div>
 
-    <!--マップ表示-->
 
-    <div class="mt-3 p-2 input-field border rounded-top w-50" id="search-form">
-      <label class="font-weight-bold mx-1">場所検索</label>
-      <input type="text" id="address" placeholder="地名・住所を入力">
-      <a class="btn btn-sm btn-success mx-1" onclick="codeAddress()">地図検索</a>
-      <a id="del" class="btn btn-sm btn-warning marker-delete right mx-1" onclick="deleteMarker()">
-      <i class="fas fa-map-marker-alt fas-2x mr-1" style="color:red"></i>マーカー削除
-      </a>
-    </div>
-    
-      <div id="map"></div>
-      <%= f.fields_for :map, @post.build_map do |map| %>
-        <%= map.hidden_field :latitude %>
-        <%= map.hidden_field :longitude %>
-        <%= map.hidden_field :address %>
-      <% end %>
-    <div class="mt-3">
-    <%= f.submit "投稿する" %>
-    </div>
-    <% end %>
-    
-
-  </div>
-
+<div id="map" style="height:90vh; "></div>
 
 <script>
 var marker
@@ -59,8 +11,6 @@ var map_lng
 var map_add
 var address
 var fixaddress
-
-
 
 function initMap(){
   
@@ -91,9 +41,7 @@ function initMap(){
     map_lng.value = event.latLng.lng();
     console.log(map_lat.value,map_lng.value);
     
-
-    
-    let latLngInput = new google.maps.LatLng(map_lat.value,  map_lng.value);
+       let latLngInput = new google.maps.LatLng(map_lat.value,  map_lng.value);
     // マーカークリック時に住所取得
     geocoder = new google.maps.Geocoder()
     
@@ -124,11 +72,6 @@ function initMap(){
   
 }
 
-function deleteMarker(){
-  marker.setMap(null);
-  map_lat.value = "";
-  map_lng.value = "";
-}
 
 function codeAddress(){
   geocoder = new google.maps.Geocoder()

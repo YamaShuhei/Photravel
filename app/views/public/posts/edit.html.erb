@@ -1,15 +1,29 @@
 <div class="container">
   <div>編集画面です</div>
   
-  <div class="">
-    <%= form_with model:@post do |f| %>
+  <div>
+    <%= form_with(model: @post,local: true) do |f| %>
       <div class="field">
-        <%= f.label :title, "タイトル"%>
-        <%= f.text_field :title %>
+        <div>
+          <%= f.label :title, "タイトル"%>
+          <%= f.text_field :title %>
+        </div>
+        <div>
+          <%= f.label :caption, "説明文" %>
+          <%= f.text_area :caption %>
+        </div>
         
-        
+        <div>マップ</div>
+          <div id="map"></div>
+          <%= f.fields_for :map, @post.map do |map| %>
+            <%= map.hidden_field :latitude %>
+            <%= map.hidden_field :longitude %>
+            <%= map.hidden_field :address %>
+          <% end %>
+        <div>
         <%= f.label :name, "タグ：半角スペースで区切ると複数タグ登録)" %>
-        <%= f.text_field :name,value: @tag_list,class:"form-control"%>
+        <%= f.text_field :name,value: @tag_list,class:"form-control w-50"%>
+        </div>
       </div>
     
     　<div class="actions" style="margin:20px 0;">
@@ -21,3 +35,70 @@
   
   
 </div>
+
+<script>
+var marker
+var myLatLng
+var map
+var map_lat
+var map_lng
+var map_add
+var address
+var fixaddress
+
+
+function initMap(){
+   myLatLng = new google.maps.LatLng({lat: gon.lat, lng: gon.lng});
+   map_lat = document.getElementById('post_map_latitude')
+   map_lng = document.getElementById('post_map_longitude')
+   map_add = document.getElementById('post_map_address')
+   map = new google.maps.Map(document.getElementById('map'), {
+   center: myLatLng,
+   zoom: 13,
+   mapTypeControl: false
+  });
+     marker = new google.maps.Marker({
+     position: myLatLng,
+     map: map
+       
+ });
+     
+  google.maps.event.addListener(map, 'click', mylistener);
+
+  function mylistener(event){
+    //markerの位置を設定
+    //event.latLng.lat()でクリックしたところの緯度を取得
+    marker.setPosition(new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()));
+    //marker設置
+    marker.setMap(map);    
+    map_lat.value = event.latLng.lat();
+    map_lng.value = event.latLng.lng();
+    console.log(map_lat.value,map_lng.value);
+    
+    let latLngInput = new google.maps.LatLng(map_lat.value,  map_lng.value);
+    // マーカークリック時に住所取得
+    geocoder = new google.maps.Geocoder()
+    
+    geocoder.geocode( { 
+    'latLng': latLngInput,
+    }, function(results, status) {
+    if (status == 'OK') {
+      address = results[0].formatted_address;
+      fixaddress = address.replace( /........日本、|日本、|〒.........|/g, "");
+      map.setCenter(results[0].geometry.location);
+      map_result = results[0].geometry.location;
+      map_lat.value = map_result.lat();
+      map_lng.value = map_result.lng();
+      marker.setPosition(new google.maps.LatLng(map_result.lat(), map_result.lng()));
+      marker.setMap(map);
+      console.log(map_lat.value,map_lng.value);
+      console.log(fixaddress);
+    } else {
+      alert('該当する結果がありませんでした');
+      initMap();
+    }
+    document.getElementById('post_map_address').value = fixaddress;
+  });   
+  }
+}
+</script>

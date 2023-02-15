@@ -5,10 +5,18 @@ class Post < ApplicationRecord
   
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorited_users, through: :likes, source: :user
   has_many :post_tags,dependent: :destroy
   has_many :tags,through: :post_tags
-  
   has_one :map, dependent: :destroy
+  
+  validates_associated :map
+  
+  validates :post_image, presence: true
+  validates :title, presence: true
+  validates :caption, presence: true
+  
+
   
   #プロフィール画像を任意の画像サイズで出力出来るように
   def get_post_image(width,height)
@@ -36,11 +44,20 @@ class Post < ApplicationRecord
       new_post_tag = Tag.find_or_create_by(name: new)
       self.tags << new_post_tag
    end
-end
+  end
   
-  
+  #いいね確認用
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+  
+  def self.search(search)
+    if search != ""
+      Post.includes(:map,:tags).where(['title LIKE(?) OR caption LIKE(?) OR maps.address LIKE(?) OR tags.name LIKE(?)', "%#{search}%", "%#{search}%", "%#{search}%", "#{search}"]).references(:maps,:tags)
+    else
+      Post.includes(:user).order('created_at DESC')
+    end
+  end
+  
   
 end

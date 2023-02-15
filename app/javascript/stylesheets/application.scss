@@ -52,6 +52,16 @@ a.btn-border {
   cursor: pointer;
 }
 
+.card{
+  background: #fff;
+  transition: background-color 0.5s;
+}
+
+.card img:hover{
+	opacity:0.5;
+	transition:0.3s;
+}
+
 #sub-btn{
   position: absolute;
   right: 74px;
@@ -65,7 +75,7 @@ a.btn-border {
 }
 
 .header_logo{
-  width: 310px;
+  width: 200px;
   height: auto ;
 }
 
@@ -75,8 +85,8 @@ a.btn-border {
 }
 
 #map{
-   height: 600px;
-  width: 600px;
+   height: 300px;
+  width: 100%;
 }
 
 .img-reg{
@@ -88,9 +98,22 @@ a.btn-border {
   width: 95%;
 }
 
+#user-prof{
+  top: 18px;
+}
+
+.user-name{
+  position:absolute;
+  top: 11px;
+}
+
 .post-img{
   width: auto;
   max-height: 600px;
+}
+
+#search-form{
+  background-color: #81caff;
 }
 
 .post-caption-val{
@@ -99,12 +122,12 @@ a.btn-border {
 }
 
 #map-info{
-  height: 400px;
+  height: 52vh;
 }
 
 #post-map{
-  width: 250px;
-  height: 200px;
+  width: 22vw;
+  height: 36vh;
 }
 
 .ruled-line{
@@ -115,3 +138,31 @@ a.btn-border {
  background-position: left bottom;
  color:#f8f9fa;
 }
+
+.favorite-link {
+  text-decoration: none;
+}
+
+.favorite-btn {
+  font-size: 1em;
+  color: #808080;
+}
+
+.unfavorite-btn {
+  font-size: 1em;
+  color: #e54747;
+}
+
+#post-comments{
+  font-size: 14px;
+}
+
+.fav-btn{
+    position: relative;
+    left: 16%;
+    border-radius: 21px;
+    background: linear-gradient(145deg, #ffe4ff, #ffa6f0);
+    box-shadow: 3px 3px 6px #dda1e6;
+}
+
+
