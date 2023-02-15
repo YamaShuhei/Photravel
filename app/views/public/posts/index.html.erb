@@ -1,19 +1,15 @@
-<div class="container-fluid">
-  <div class="row">
+<div class="container">
+  <div class="h3">
     最新の投稿一覧
   </div>
   
-  <div class="text-center">
+  <div class="card-columns">
     <% @posts.each do |post| %>
-    <div class="d-inline-block img-thumbnail mx-1 my-2">
+    <div class="card">
     <%= link_to post_path(post.id) do %>
-      <%= image_tag post.post_image,class:"posts"%><br>
-      <%= post.title %>
+      <%= image_tag post.post_image,class:"hover-black px-0 col post-img card-img-top"%>
     <% end %>
     </div>
     <% end %>
-    
   </div>
-  
-  
 </div>

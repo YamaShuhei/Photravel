@@ -1,7 +1,5 @@
 /*global $*/
 
-
-
 // サインアップ用
 if (document.URL.match(/sign_up/)){
   // プレビュー画像表示用

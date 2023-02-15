@@ -16,8 +16,9 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application" 
+import "../stylesheets/homes" 
 import '@fortawesome/fontawesome-free/js/all'
-
+import "index.js"
 
 Rails.start()
 Turbolinks.start()
