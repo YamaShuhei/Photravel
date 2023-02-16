@@ -9,9 +9,6 @@
   </div>
 </div>
 
-
-
-
 <script>
 let marker = [];
 var map
@@ -37,7 +34,8 @@ function initMap(){
     let contentStr = 
     `<a href='/posts/${postId}'>` +
     `<div class="text-center">「${postData[i]['title']}」</div>` +
-    `<div>${markerData[i]['address']}</div>`;
+    `<div>${markerData[i]['address']}</div>` +
+    `</a>`;
     
     
     // 各データーの緯度経度を計算
@@ -47,30 +45,33 @@ function initMap(){
       
     });
     
-    // 各地店のマーカーを作成
+    // 各地点のマーカーを作成
     marker[i] = new google.maps.Marker({
       position: markerLatLng,
+      animation: google.maps.Animation.DROP,
       map: map
     });
     
     // 各地点の吹き出しを作成
     infoWindow[i] = new google.maps.InfoWindow({
       content: contentStr
-      
     });
     
     markerEvent(i);
   }
-
-function markerEvent(i){
-  marker[i].addListener('click', function(){
-    infoWindow[i].open(map, marker[i]);
-  });
   
-  map.addListener('click', function() {
-    infoWindow[i].close(map, marker[i]);
-  });
-}
+
+
+  function markerEvent(i){
+    marker[i].addListener('click', function(){
+      infoWindow[i].open(map, marker[i]);
+    });
+  
+    map.addListener('click', function() {
+      infoWindow[i].close(map, marker[i]);
+    });
+  }
+  
 }
 
 

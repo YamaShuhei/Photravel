@@ -72,3 +72,4 @@ gem 'gon'
 #緯度経度情報の取得
 gem 'geocoder'
 
+gem 'kaminari','~> 1.2.1'
