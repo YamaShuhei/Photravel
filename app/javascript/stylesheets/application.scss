@@ -1,6 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import 'https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Poppins:ital,wght@1,900&display=swap';
+
 
 body {
   font-family: 'Kosugi Maru', sans-serif;
@@ -50,6 +51,80 @@ a.btn-border {
   border: 2px solid #000;
   border-radius: 50%; 
   cursor: pointer;
+}
+
+.rank-board1{
+  font-size: 28px;
+}
+
+.rank-number{
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.rank1{
+  background: linear-gradient(145deg, #ffff5f, #d7d850);
+  box-shadow:  1px 1px 6px #e5e854;
+  color: white;
+  font-size: 36px;
+}
+
+.rank-board2{
+}
+
+.rank2{
+  background: linear-gradient(145deg, #e8e8e8, #c3c3c3);
+  box-shadow: 1px 1px 6px #7e7e7e;
+  color: white;
+  font-size: 36px;
+}
+
+.rank-board3{
+}
+
+.rank3{
+  background: linear-gradient(145deg, #eb8949, #c6733d);
+  box-shadow: 1px 1px 6px #ea8848;
+  color: white;
+  font-size: 36px;
+}
+
+.rank-board4{
+}
+
+.rank4{
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: linear-gradient(145deg, #48b4ea, #3c97c5);
+  box-shadow: 1px 1px 6px #3f9ece;
+  color: white;
+  font-size: 30px;
+}
+
+.rank-board5{
+}
+
+.rank5{
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 32px;
+  background: linear-gradient(145deg, #40be38, #36a02f);
+  box-shadow: 1px 1px 6px #38a731;
+  color: white;
+  font-size: 30px;
+}
+
+#fa-rank{
+  font-size: 30px;
+  color: rgb(251,116,116);
+}
+
+#fa-size{
+  font-size: 32px;
 }
 
 .card{
@@ -123,6 +198,23 @@ a.btn-border {
 
 #map-info{
   height: 52vh;
+}
+
+.tag{
+  position: relative;
+  margin-left: 30px;
+}
+
+
+.tag:after{
+  position: absolute;
+  top: calc(53% - 7px);
+  left: 7px;
+  width: 12px;
+  height: 12px;
+  content: "";
+  border-radius: 50%;
+  background: #fff;
 }
 
 #post-map{

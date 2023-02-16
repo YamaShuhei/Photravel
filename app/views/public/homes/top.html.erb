@@ -1,13 +1,12 @@
 <%= stylesheet_pack_tag 'homes' %>
 
-
 <div class="container">
   <div class="h1">
     都道府県から写真を探す
   </div>
 </div>
 
-<div id="japan-map" class="clearfix">
+<div id="japan-map" class="clearfix mb-4">
 
 <div id="hokkaido-touhoku" class="clearfix">
 	<p class="area-title">北海道・東北</p>
@@ -288,4 +287,44 @@
 
 </div>
 
-<div class="container-fluid border-top"></div>
+<div class="container-fluid border-top">
+	<div class="row">
+		<!--ランキング表示-->
+		<div class="col-6 home-menu">
+			<div class="ranking">
+				<div class="h3 text-center">月間いいね数ランキング（<%= Date.today.beginning_of_month %>～<%= Date.today.end_of_month %>）</div>
+					<% @month_favorite_ranks.each.with_index(1) do |post, i| %>
+							<div class="card mb-2">
+								<div class="row d-flex align-items-center no-gutters rank-board<%=i%>">
+									<%= link_to post_path(post.id) do %>
+										<div class="col-md-4 text-center bg-dark">
+										<%= image_tag post.post_image, class:"img-fluid",style:"max-height:120px" %>
+									<% end %>
+								</div>
+								<div class="col-md-8">
+									<div class="ml-3 d-inline-block rank-number rank<%= i%> text-center rounded-circle"><%= i %></div>
+									<%= link_to post_path(post.id),class:"text-dark" do %>
+										<span class="h5">「<%= post.title %>」</span>
+									<% end %>
+									<span class="float-right h4 mr-5" id="fa-rank"><i class="fa-solid fa-heart pr-2" id="fa-size"></i><%= post.favorites.count %></span>
+								</div>
+								</div>
+							</div>
+					<% end %>
+			</div>
+		</div>
+		<!--最新投稿表示-->
+		<div class="col-6 home-menu ">
+		<div class="h3 text-center">最新の投稿</div>
+		  <div class="card-columns">
+		    <% @posts.each do |post| %>
+		    <div class="card">
+		    <%= link_to post_path(post.id) do %>
+		      <%= image_tag post.post_image,class:"hover-black px-0 col post-img card-img-top"%>
+		    <% end %>
+		    </div>
+		    <% end %>
+ 		 </div>
+		</div>
+	</div>
+</div>
