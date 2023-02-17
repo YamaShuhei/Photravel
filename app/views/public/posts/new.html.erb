@@ -1,9 +1,9 @@
 <div class="container-fluid" id="post-container">
     <!--投稿画面-->
     <%= form_with(model: @post,local: true,multipart: true) do |f| %>
-    <div class="ml-2 mt-2 d-inline-block h3 border rounded">写真投稿</div>
+    <div class="ml-2 mt-2 d-inline-block h3 midashi">写真投稿</div>
     <div class="w-50 bg-white border rounded shadow-sm p-2">
-      <div>
+      <div class="align-middle" >
         <%= render 'layouts/error_messages', model: f.object %>
       </div>
       <div class="">
@@ -71,7 +71,7 @@ function initMap(){
    map_add = document.getElementById('post_map_address')
    map = new google.maps.Map(document.getElementById('map'), {
   center: myLatLng,
-  zoom: 12,
+  zoom: 9,
   streetViewControl: false,
   mapTypeControl: false
   });

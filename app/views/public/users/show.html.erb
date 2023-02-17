@@ -44,8 +44,8 @@
   <!--選択ボタン-->
   <div class="row justify-content-center">
     <div class="list-group list-group-horizontal" id="mylist" role="tablist">
-      <a class="col-4 list-group-item list-group-item-action active text-nowrap" data-toggle="list" href="#new" role="tab">最新の投稿</a>
-      <a class="col-4 list-group-item list-group-item-action text-nowrap" data-toggle="list" href="#favorite" role="tab">いいねした作品</a>
+      <a class="col list-group-item list-group-item-action active text-nowrap" data-toggle="list" href="#new" role="tab">最新の投稿</a>
+      <a class="col list-group-item list-group-item-action text-nowrap" data-toggle="list" href="#favorite" role="tab">いいねした作品</a>
     </div>
   </div>
   
@@ -54,7 +54,7 @@
     <!--最新の投稿を表示-->
     <div class="tab-pane active" id="new" role="tabpanel">
       <% if @post.present? %>
-      <div class="card-columns">
+      <div class="card-columns mt-3">
         <% @posts.each do |post| %>
         <div class="card">
           <%= link_to post_path(post.id) do %>
