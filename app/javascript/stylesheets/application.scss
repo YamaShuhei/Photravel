@@ -53,6 +53,31 @@ a.btn-border {
   cursor: pointer;
 }
 
+.midashi{
+    font-size:  24px;
+    font-weight: bold;
+    position:  relative;
+    display:  inline-block;
+    background-color: #feeaac;
+    padding:  10px;
+    margin-bottom: 15px;
+    border-radius:  2px;
+}
+
+.midashi:before{
+    content:  '';               /* 空白の要素を作る */
+    background-color: #b3b3b3;  /* 背景色指定 */
+    display:  block;            /* ブロック要素にする */
+    position:  absolute;        /* 位置調整 */
+    left: 50%;                  /* 位置調整 */
+    height: 60%;                /* 高さ指定 */
+    top: 26%;                   /* 位置調整 */
+    z-index:  -1;               /* 重なり調整 */
+    width: 46%;                 /* 幅指定 */
+    box-shadow: 0 0 8px 8px #b3b3b3;/* 影指定 */
+    transform: rotate(3deg);    /* 回転 */
+}
+
 .rank-board1{
   font-size: 28px;
 }
