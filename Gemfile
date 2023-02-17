@@ -73,3 +73,4 @@ gem 'gon'
 gem 'geocoder'
 
 gem 'kaminari','~> 1.2.1'
+

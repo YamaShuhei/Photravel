@@ -1,0 +1,5 @@
+<div class="d-flex justify-content-center flash-notifications mt-1">
+  <% flash.each do |key, value| %>
+   <%= content_tag(:div, value, class: key) %>
+  <% end %>
+</div>  
