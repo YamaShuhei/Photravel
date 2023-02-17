@@ -12,9 +12,7 @@
         <div>（<%= comment.created_at.to_s(:datetime_jp) %>）</div>
       </div>
       <div class="col-2">
-        <% if current_user == comment.user %>
-          <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, remote: true, class:"btn btn-sm btn-danger mr-2" %>
-        <% end %>
+          <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, data: {confirm: "コメントを削除しますか？"}, remote: true, class:"btn btn-sm btn-danger mr-2" %>
       </div>
     </div>
   <% end %>
