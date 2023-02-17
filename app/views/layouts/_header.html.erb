@@ -13,12 +13,24 @@
           <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %></li>
         <!--管理者サインイン時-->
         <% elsif admin_signed_in? %>
-          <li class="nav-item"><%= link_to "投稿一覧(管理者用)", admin_root_path, class: 'nav-link text-dark' %></li>
-          <li class="nav-item"><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+          <li class="nav-item">
+            <%= link_to admin_root_path, class: 'd-inline-block nav-link text-dark' do %>
+              <i class="fa-solid fa-images"></i> 投稿一覧(管理者用)
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
+            <i class="fa-solid fa-right-from-bracket"></i>管理者ログアウト
+            <% end %>
+            </li>
         <% else %>
           <!--サインアウト中かつURLに/adminが含まれる場合-->
           <% if request.fullpath.include? "/admin" %>
-            <li class="nav-item"><%= link_to "管理者ログイン", new_admin_session_path, method: :get, class: 'nav-link text-dark' %></li>
+            <li class="nav-item">
+            <%= link_to new_admin_session_path, method: :get, class: 'nav-link text-dark' do %>
+            <i class="fa-solid fa-right-to-bracket"></i>管理者ログイン
+            <% end %>
+            </li>
           <!--URLにadminが含まれない場合-->
           <% else %>
             <li class="nav-item"><%= link_to "ログイン", new_user_session_path, method: :get, class: 'nav-link text-dark' %></li>

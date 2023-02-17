@@ -7,12 +7,8 @@
       <div class="col-8">
         <div class="row">
           <div class="text-left h3" id="post-title"><%= @post.title %></div>
-      <!--ログインユーザーだった場合編集画面へのアクセスボタン表示-->
-        <% if user_signed_in? %>
-          <% if @post.user_id == current_user.id %>
-            <%= link_to "投稿編集", edit_post_path(@post.id), class:"ml-3 btn btn-secondary"%>
-          <% end %>
-        <% end %>
+      <!--投稿削除ボタン-->
+            <%= link_to "投稿削除", admin_post_path(@post.id), method: :delete, data: {confirm: "投稿を削除しますか？"}, class:"ml-3 btn btn-danger"%>
           </div>
        </div>
       <!--ユーザー情報-->
@@ -25,13 +21,11 @@
     </div>
     
     <!--タグ-->
-    <div class="row font-weight-bold ml-4 mb-2">登録タグ：
+    <div class="row font-weight-bold ml-3 mb-2">登録タグ：
       <div class="col-3 text-left">
         <% @post_tags.each do |tag| %>
         <div class="d-inline-block mr-2 ml-0 p-1 pl-4 bg-dark rounded text-white tag">
-          <%= link_to search_posts_path(keyword: "#{tag.name}") do %>
           <span class="text-white"><%=tag.name%><%="(#{tag.posts.count})" %></span>
-          <% end %>
         </div>
         <% end %>
       </div>
@@ -73,15 +67,6 @@
     <div class=" row justify-content-center">
       <div class="col-10">
         <div id="post-caption">
-        <% if user_signed_in? %>
-          <div class="d-inline-block h3 my-4">コメントする</div>
-          <!--コメントフォームテンプレート-->
-          <div class="mb-5">
-            <%= render partial: 'public/comments/comment_form', locals: {post: @post, comment: @comment} %>
-          </div>
-        <% else %>
-          <div class="d-inline-block h4 my-4">※コメントするにはログインして下さい。</div>
-        <% end %>
         <!--コメント一覧-->
         <div id="comments_area">
           <%= render 'public/comments/comments', post: @post %>

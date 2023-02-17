@@ -67,6 +67,8 @@ gem "net-pop"
 gem "net-imap"
 #devise
 gem "devise"
+gem 'rails-i18n', '~> 6.0'
+gem 'devise-i18n'
 #javascript 変数
 gem 'gon'
 #緯度経度情報の取得

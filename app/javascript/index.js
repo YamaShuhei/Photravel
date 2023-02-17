@@ -43,9 +43,9 @@ if (document.URL.match(/sign_up/)){
 });
 }
 
-// $(function(){
-//   setTimeout("$('.notice').fadeOut('slow')", 2000);
-// });
-// $(function(){
-//   setTimeout("$('.alert').fadeOut('slow')", 2000);
-// });
+$(function(){
+  setTimeout("$('.notice').fadeOut('slow')", 2000);
+});
+$(function(){
+  setTimeout("$('.alert').fadeOut('slow')", 2000);
+});
