@@ -1,7 +1,7 @@
 /*global $*/
 
-// サインアップ用
-if (document.URL.match(/sign_up/)){
+// サインアップ・編集画面用
+if (document.URL.match(/sign_up/)||document.URL.match(/edit/)){
   // プレビュー画像表示用
   document.addEventListener('DOMContentLoaded', () => {
       const createImageHTML = (blob) => {  

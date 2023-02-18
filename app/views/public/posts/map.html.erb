@@ -1,6 +1,6 @@
 <div class="position-relative">
   <!--マップ-->
-  <div id="map" style="height:90vh;" class="position-absolute" data-turbolinks='false'></div>
+  <div id="map" style="height:85vh;" class="position-absolute" data-turbolinks='false'></div>
   <!--検索フォーム-->
   <div class="d-inline-block bg-light border p-2 position-absolute map-searchform  ">
     <label class="font-weight-bold mx-1">場所検索</label>
@@ -15,6 +15,12 @@ var map
 let infoWindow = [];
 let markerData = gon.maps;
 let postData = gon.posts;
+
+$(()=>{
+    $('#footer').hide();
+});
+
+  
 
 function initMap(){
   

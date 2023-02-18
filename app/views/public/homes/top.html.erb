@@ -1,292 +1,294 @@
 <%= stylesheet_pack_tag 'homes' %>
 
-<div class="pt-3 pb-4" style="z-index:-2;">
-	<div class="container">
-	  <div class="h1 mt-2 midashi">
-	    都道府県から写真を探す
-	  </div>
-	</div>
-	
-	<div id="japan-map" class="clearfix">
-	
-	<div id="hokkaido-touhoku" class="clearfix">
-		<p class="area-title">北海道・東北</p>
-		<div class="area">
-	    <%= link_to search_posts_path(keyword: "北海道") do %>
-	    	<div id="hokkaido">
-	  		<p>北海道</p>
-	    	</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "青森") do %>
-				<div id="aomori">
-					<p>青森</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "秋田") do %>
-				<div id="akita">
-					<p>秋田</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "岩手") do %>
-				<div id="iwate">
-					<p>岩手</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "山形") do %>
-				<div id="yamagata">
-					<p>山形</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "宮城") do %>
-				<div id="miyagi">
-					<p>宮城</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "福島") do %>
-				<div id="fukushima">
-					<p>福島</p>
-				</div>
-			<% end %>
+<div class="container-fluid map-container">
+	<div class="pt-3 pb-4" style="z-index:-2;">
+		<div class="container">
+		  <div class="h1 mt-2 midashi shadow">
+		    都道府県から写真を探す
+		  </div>
 		</div>
-	</div>
-	
-	<div id="kantou">
-		<p class="area-title">関東</p>
-		<div class="area">
-			<%= link_to search_posts_path(keyword: "群馬") do %>
-				<div id="gunma">
-					<p>群馬</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "栃木") do %>
-				<div id="tochigi">
-					<p>栃木</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "茨城") do %>
-				<div id="ibaraki">
-					<p>茨城</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "埼玉") do %>
-				<div id="saitama">
-					<p>埼玉</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "千葉") do %>
-				<div id="chiba">
-					<p>千葉</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "東京") do %>
-				<div id="tokyo">
-					<p>東京</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "神奈川") do %>
-				<div id="kanagawa">
-					<p>神奈川</p>
-				</div>
-			<% end %>
+		
+		<div id="japan-map" class="clearfix">
+		
+		<div id="hokkaido-touhoku" class="clearfix">
+			<p class="area-title">北海道・東北</p>
+			<div class="area">
+		    <%= link_to search_posts_path(keyword: "北海道") do %>
+		    	<div id="hokkaido" class="map-button">
+		  		<p>北海道</p>
+		    	</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "青森") do %>
+					<div id="aomori" class="map-button">
+						<p>青森</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "秋田") do %>
+					<div id="akita">
+						<p>秋田</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "岩手") do %>
+					<div id="iwate" class="map-button">
+						<p>岩手</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "山形") do %>
+					<div id="yamagata">
+						<p>山形</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "宮城") do %>
+					<div id="miyagi" class="map-button">
+						<p>宮城</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "福島") do %>
+					<div id="fukushima" class="map-button">
+						<p>福島</p>
+					</div>
+				<% end %>
+			</div>
 		</div>
-	</div>
-	
-	<div id="tyubu" class="clearfix">
-		<p class="area-title">中部</p>
-		<div class="area">
-			<%= link_to search_posts_path(keyword: "新潟") do %>
-				<div id="nigata">
-					<p>新潟</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "富山") do %>
-				<div id="toyama">
-					<p>富山</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "石川") do %>
-				<div id="ishikawa">
-					<p>石川</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "福井") do %>
-				<div id="fukui">
-					<p>福井</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "長野") do %>
-				<div id="nagano">
-					<p>長野</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "岐阜") do %>
-				<div id="gifu">
-					<p>岐阜</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "山形") do %>
-				<div id="yamanashi">
-					<p>山梨</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "愛知") do %>
-				<div id="aichi">
-					<p>愛知</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "静岡") do %>
-				<div id="shizuoka">
-					<p>静岡</p>
-				</div>
-			<% end %>
+		
+		<div id="kantou">
+			<p class="area-title">関東</p>
+			<div class="area">
+				<%= link_to search_posts_path(keyword: "群馬") do %>
+					<div id="gunma">
+						<p>群馬</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "栃木") do %>
+					<div id="tochigi">
+						<p>栃木</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "茨城") do %>
+					<div id="ibaraki" class="map-button">
+						<p>茨城</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "埼玉") do %>
+					<div id="saitama">
+						<p>埼玉</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "千葉") do %>
+					<div id="chiba" class="map-button">
+						<p>千葉</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "東京") do %>
+					<div id="tokyo" class="map-button">
+						<p>東京</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "神奈川") do %>
+					<div id="kanagawa" class="map-button">
+						<p>神奈川</p>
+					</div>
+				<% end %>
+			</div>
 		</div>
-	</div>
-	
-	<div id="kinki" class="clearfix">
-		<p class="area-title">近畿</p>
-		<div class="area">
-			<%= link_to search_posts_path(keyword: "京都") do %>
-				<div id="kyoto">
-					<p>京都</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "滋賀") do %>
-				<div id="shiga">
-					<p>滋賀</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "大阪") do %>
-				<div id="osaka">
-					<p>大阪</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "奈良") do %>
-				<div id="nara">
-					<p>奈良</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "三重") do %>
-				<div id="mie">
-					<p>三重</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "和歌山") do %>
-				<div id="wakayama">
-					<p>和歌山</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "兵庫") do %>
-				<div id="hyougo">
-					<p>兵庫</p>
-				</div>
-			<% end %>
+		
+		<div id="tyubu" class="clearfix">
+			<p class="area-title">中部</p>
+			<div class="area">
+				<%= link_to search_posts_path(keyword: "新潟") do %>
+					<div id="nigata">
+						<p>新潟</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "富山") do %>
+					<div id="toyama">
+						<p>富山</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "石川") do %>
+					<div id="ishikawa">
+						<p>石川</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "福井") do %>
+					<div id="fukui">
+						<p>福井</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "長野") do %>
+					<div id="nagano">
+						<p>長野</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "岐阜") do %>
+					<div id="gifu">
+						<p>岐阜</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "山形") do %>
+					<div id="yamanashi">
+						<p>山梨</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "愛知") do %>
+					<div id="aichi" class="map-button">
+						<p>愛知</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "静岡") do %>
+					<div id="shizuoka" class="map-button">
+						<p>静岡</p>
+					</div>
+				<% end %>
+			</div>
 		</div>
-	</div>
-	
-	<div id="tyugoku" class="clearfix">
-		<p class="area-title">中国</p>
-		<div class="area">
-			<%= link_to search_posts_path(keyword: "鳥取") do %>
-				<div id="tottori">
-					<p>鳥取</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "岡山") do %>
-				<div id="okayama">
-					<p>岡山</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "島根") do %>
-				<div id="shimane">
-					<p>島根</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "広島") do %>
-				<div id="hiroshima">
-					<p>広島</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "山口") do %>
-				<div id="yamaguchi">
-					<p>山口</p>
-				</div>
-			<% end %>
+		
+		<div id="kinki" class="clearfix">
+			<p class="area-title">近畿</p>
+			<div class="area">
+				<%= link_to search_posts_path(keyword: "京都") do %>
+					<div id="kyoto">
+						<p>京都</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "滋賀") do %>
+					<div id="shiga">
+						<p>滋賀</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "大阪") do %>
+					<div id="osaka">
+						<p>大阪</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "奈良") do %>
+					<div id="nara">
+						<p>奈良</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "三重") do %>
+					<div id="mie" class="map-button">
+						<p>三重</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "和歌山") do %>
+					<div id="wakayama" class="map-button">
+						<p>和歌山</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "兵庫") do %>
+					<div id="hyougo">
+						<p>兵庫</p>
+					</div>
+				<% end %>
+			</div>
 		</div>
-	</div>
-	
-	<div id="shikoku" class="clearfix">
-		<p class="area-title">四国</p>
-		<div class="area">
-			<%= link_to search_posts_path(keyword: "香川") do %>
-				<div id="kagawa">
-					<p>香川</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "愛媛") do %>
-				<div id="ehime">
-					<p>愛媛</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "徳島") do %>
-				<div id="tokushima">
-					<p>徳島</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "高知") do %>
-				<div id="kouchi">
-					<p>高知</p>
-				</div>
-			<% end %>
+		
+		<div id="tyugoku" class="clearfix">
+			<p class="area-title">中国</p>
+			<div class="area">
+				<%= link_to search_posts_path(keyword: "鳥取") do %>
+					<div id="tottori">
+						<p>鳥取</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "岡山") do %>
+					<div id="okayama" class="map-button">
+						<p>岡山</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "島根") do %>
+					<div id="shimane">
+						<p>島根</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "広島") do %>
+					<div id="hiroshima" class="map-button">
+						<p>広島</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "山口") do %>
+					<div id="yamaguchi">
+						<p>山口</p>
+					</div>
+				<% end %>
+			</div>
 		</div>
-	</div>
-	
-	<div id="kyusyu" class="clearfix">
-		<p class="area-title">九州・沖縄</p>
-		<div class="area">
-			<%= link_to search_posts_path(keyword: "福岡") do %>
-				<div id="fukuoka">
-					<p>福岡</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "佐賀") do %>
-				<div id="saga">
-					<p>佐賀</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "長崎") do %>
-				<div id="nagasaki">
-					<p>長崎</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "大分") do %>
-				<div id="oita">
-					<p>大分</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "熊本") do %>
-				<div id="kumamoto">
-					<p>熊本</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "宮崎") do %>
-				<div id="miyazaki">
-					<p>宮崎</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "鹿児島") do %>
-				<div id="kagoshima">
-					<p>鹿児島</p>
-				</div>
-			<% end %>
-			<%= link_to search_posts_path(keyword: "沖縄") do %>
-				<div id="okinawa">
-					<p>沖縄</p>
-				</div>
-			<% end %>
+		
+		<div id="shikoku" class="clearfix">
+			<p class="area-title">四国</p>
+			<div class="area">
+				<%= link_to search_posts_path(keyword: "香川") do %>
+					<div id="kagawa" class="map-button">
+						<p>香川</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "愛媛") do %>
+					<div id="ehime">
+						<p>愛媛</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "徳島") do %>
+					<div id="tokushima" class="map-button">
+						<p>徳島</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "高知") do %>
+					<div id="kouchi" class="map-button">
+						<p>高知</p>
+					</div>
+				<% end %>
+			</div>
 		</div>
+		
+		<div id="kyusyu" class="clearfix">
+			<p class="area-title">九州・沖縄</p>
+			<div class="area">
+				<%= link_to search_posts_path(keyword: "福岡") do %>
+					<div id="fukuoka" class="map-button">
+						<p>福岡</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "佐賀") do %>
+					<div id="saga">
+						<p>佐賀</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "長崎") do %>
+					<div id="nagasaki" class="map-button">
+						<p>長崎</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "大分") do %>
+					<div id="oita" class="map-button">
+						<p>大分</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "熊本") do %>
+					<div id="kumamoto">
+						<p>熊本</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "宮崎") do %>
+					<div id="miyazaki" class="map-button">
+						<p>宮崎</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "鹿児島") do %>
+					<div id="kagoshima" class="map-button">
+						<p>鹿児島</p>
+					</div>
+				<% end %>
+				<%= link_to search_posts_path(keyword: "沖縄") do %>
+					<div id="okinawa" class="map-button">
+						<p>沖縄</p>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		
 	</div>
-	
-</div>
+	</div>
 </div>
 
 <div class="container-fluid border-top">

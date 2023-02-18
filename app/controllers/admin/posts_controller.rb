@@ -3,8 +3,6 @@ class Admin::PostsController < ApplicationController
   
   def show
     @post = Post.find(params[:id])
-    @post = Post.find(params[:id])
-    # @post_comment=PostComment.new
     @post_tags = @post.tags
     @lat = @post.map.latitude
     @lng = @post.map.longitude

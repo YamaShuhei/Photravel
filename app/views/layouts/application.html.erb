@@ -9,14 +9,15 @@
     <%= include_gon %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.css" type="text/css" media="all" />
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <%= render 'shared/flash_message' %>
-    <div class="mt-2 mb-auto">
-      <%= yield %>
-    </div>
+      <%= render 'layouts/header' %>
+      <%= render 'shared/flash_message' %>
+      <main class="mt-2">
+        <%= yield %>
+      </main>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY']%>&callback=initMap" async defer></script> 
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
   </body>

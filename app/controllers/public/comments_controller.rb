@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :post_params, only: [:create, :destroy]
   
   def create
     @post = Post.find(params[:post_id])
