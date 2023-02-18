@@ -48,7 +48,7 @@
   <% unless request.fullpath.include? "/admin" %>
   <!--検索・投稿フォーム-->
   <div class="container-fluid border-top py-2">
-    <div class="row justify-content-md-around">
+    <div class="row justify-content-md-around d-flex align-items-center">
       <!--投稿検索（最新投稿）-->
       <%= link_to "写真を探す", posts_path, class:"fusen mr-2" %>
       <%= link_to "マップから探す", map_posts_path, class:"fusen" %>

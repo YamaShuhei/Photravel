@@ -23,7 +23,7 @@ scope module: :public do
       get 'map'
     end
   end
-  resources :users, only: [:show, :edit]
+  resources :users, only: [:show, :edit ,:update]
 
 end
 

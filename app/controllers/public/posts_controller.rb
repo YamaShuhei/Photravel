@@ -1,7 +1,9 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
+  before_action :is_matching_login_user, only: [:destroy, :edit, :update]
   
   def index
-    @posts = Post.all.order(created_at: "DESC")
+    @posts = Post.all.order(created_at: "DESC").page(params[:page]).per(15)
     @tags=Tag.all
   end
 
@@ -14,6 +16,7 @@ class Public::PostsController < ApplicationController
     gon.lat = @lat
     gon.lng = @lng
     @comments = @post.comments
+    user_id = @post.user_id
     if user_signed_in?
       @comment = current_user.comments.new
     end
@@ -60,6 +63,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @lat = @post.map.latitude
     @lng = @post.map.longitude
+    user_id = @post.user_id
     gon.lat = @lat
     gon.lng = @lng
     @tag_list=@post.tags.pluck(:name).join(' ')
@@ -91,6 +95,8 @@ class Public::PostsController < ApplicationController
   end
   
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
   end
   
   def map
@@ -112,6 +118,13 @@ class Public::PostsController < ApplicationController
   
   def post_params
     params.require(:post).permit(:title, :caption, :post_image, map_attributes:[:id, :address, :latitude, :longitude] )
+  end
+  
+  def is_matching_login_user
+    user_id = params[:id].to_i
+    unless user_id == current_user.id
+      redirect_to posts_path
+    end
   end
   
 end
