@@ -1,0 +1,102 @@
+<div class="position-relative">
+  <!--マップ-->
+  <div id="map" style="height:85vh;" class="position-absolute" data-turbolinks='false'></div>
+  <!--検索フォーム-->
+  <div class="d-inline-block bg-light border p-2 position-absolute map-searchform  ">
+    <label class="font-weight-bold mx-1">場所検索</label>
+    <input type="text" id="address" placeholder="地名・住所を入力">
+    <a class="btn btn-sm btn-success mx-1" onclick="codeAddress()">地図検索</a>  
+  </div>
+</div>
+
+<script>
+let marker = [];
+var map
+let infoWindow = [];
+let markerData = gon.maps;
+let postData = gon.posts;
+
+$(()=>{
+    $('#footer').hide();
+});
+
+  
+
+function initMap(){
+  
+  geocoder = new google.maps.Geocoder()
+  
+  map = new google.maps.Map(document.getElementById('map'), {
+  center: { lat: 35.6585, lng: 139.7486},
+  zoom: 12,
+  streetViewControl: false,
+  mapTypeControl: false
+  });
+
+  // 登録されているマップデータの数繰り返しマーカー作成
+  for (var i = 0; i < markerData.length; i++){
+    let id = markerData[i]['id']
+    let postId = markerData[i]['post_id']
+    let contentStr = 
+    `<a href='/posts/${postId}'>` +
+    `<div class="text-center">「${postData[i]['title']}」</div>` +
+    `<div>${markerData[i]['address']}</div>` +
+    `</a>`;
+    
+    
+    // 各データーの緯度経度を計算
+    markerLatLng = new google.maps.LatLng({
+      lat: markerData[i]['latitude'],
+      lng: markerData[i]['longitude']
+      
+    });
+    
+    // 各地点のマーカーを作成
+    marker[i] = new google.maps.Marker({
+      position: markerLatLng,
+      animation: google.maps.Animation.DROP,
+      map: map
+    });
+    
+    // 各地点の吹き出しを作成
+    infoWindow[i] = new google.maps.InfoWindow({
+      content: contentStr
+    });
+    
+    markerEvent(i);
+  }
+  
+
+
+  function markerEvent(i){
+    marker[i].addListener('click', function(){
+      infoWindow[i].open(map, marker[i]);
+    });
+  
+    map.addListener('click', function() {
+      infoWindow[i].close(map, marker[i]);
+    });
+  }
+  
+}
+
+
+// 地図検索
+function codeAddress(){
+  geocoder = new google.maps.Geocoder()
+  let inputAddress = document.getElementById('address').value;
+  geocoder.geocode( { 
+    'address': inputAddress
+    }, function(results, status) {
+      address = "";
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+    } else {
+      alert('該当する結果がありませんでした');
+      initMap();
+    }
+  });   
+}
+
+
+</script>

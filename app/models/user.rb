@@ -5,10 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_one_attached :profile_image
+  
+
+    validates :name, presence: true
+    validates :email, presence: true
 
     has_many :posts, dependent: :destroy
     has_many :comments, dependent: :destroy
     has_many :favorites, dependent: :destroy
+    has_many :favorited_posts, through: :likes, source: :post
     
     #フォロー・フォロワー機能
     has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
@@ -25,6 +30,11 @@ class User < ApplicationRecord
       profile_image.attach(io: File.open(file_path),filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit:[width,height]).processed
+  end
+  
+  #いいねしているかチェック
+  def favorited_by?(post_id)
+    favorites.where(post_id: post_id).exists?
   end
     
 

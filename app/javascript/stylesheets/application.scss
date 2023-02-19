@@ -1,10 +1,23 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import 'https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Poppins:ital,wght@1,900&display=swap';
+
 
 body {
   font-family: 'Kosugi Maru', sans-serif;
   background-color: #f8f9fa;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.map-container{
+  background-color: #8dcdfb;
+}
+
+.map-button{
+  box-shadow: 13px 13px 21px -12px #757575;
 }
 
 .field_with_errors {
@@ -14,10 +27,120 @@ body {
   }
 }
 
+.home-menu .card-columns{
+  @include media-breakpoint-only(sm) {
+    column-count: 2;
+  }
+  @include media-breakpoint-only(md) {
+    column-count: 2;
+  }
+  @include media-breakpoint-only(lg) {
+    column-count: 3;
+  }
+    @include media-breakpoint-only(xl) {
+    column-count: 4;
+  }
+
+}
+
+.search-form-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #000000;
+    border-radius: 25px;
+}
+
+.search-form-1 input {
+    height: 45px;
+    padding: 5px 15px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 1em;
+    outline: none;
+}
+
+.search-form-1 input::placeholder{
+    color: #80888e;
+}
+
+.search-form-1 button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 45px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.card-columns {
+  @include media-breakpoint-only(sm) {
+    column-count: 2;
+  }
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
+  }
+}
+
+.fusen {
+    display: inline-block;
+    position: relative;
+    padding: .5em 1em;
+    border-right: 27px solid #2589d0;
+    background-color: #f5f5f5;
+    color: #333333;
+}
+
+.fusen::before {
+    position: absolute;
+    bottom: 2px;
+    right: -20px;
+    z-index: -1;
+    transform: rotate(5deg);
+    width: 100%;
+    height: 50%;
+    background-color: #d0d0d0;
+    content: "";
+    filter: blur(4px);
+}
+.flash-notifications {
+  font-weight: bold;
+  color: white;
+  text-align: center; 
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 5;
+
+  .notice {
+    background-color: #ADD8E6;
+    padding: 5px 15px 5px 15px;
+    border-radius: 5%;
+  }
+
+  .alert {
+    background-color: #FF4500;
+    padding: 5px 15px 5px 15px;
+    border-radius: 5%;
+  }
+
+  }
+
 .new-img{
-  width: 200px;
+  height: 150px;
   object-fit: cover;
   border: solid;
+}
+
+.edit-form{
+  height: 450px;
 }
 
 .profileMenu-back{
@@ -52,6 +175,115 @@ a.btn-border {
   cursor: pointer;
 }
 
+.midashi{
+    font-size:  24px;
+    font-weight: bold;
+    position:  relative;
+    display:  inline-block;
+    background-color: #feeaac;
+    padding:  10px;
+    margin-bottom: 15px;
+    border-radius:  2px;
+}
+
+.midashi:before{
+    content:  '';
+    background-color: #b3b3b3;
+    display:  block;
+    position:  absolute;
+    left: 50%;
+    height: 60%;
+    top: 26%;
+    z-index:  -1;
+    width: 46%;
+    box-shadow: 0 0 8px 8px #b3b3b3;
+    transform: rotate(3deg);
+}
+
+.rank-board1{
+  font-size: 28px;
+}
+
+.rank-number{
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.rank1{
+  background: linear-gradient(145deg, #ffff5f, #d7d850);
+  box-shadow:  1px 1px 6px #e5e854;
+  color: white;
+  font-size: 36px;
+}
+
+.rank-board2{
+}
+
+.rank2{
+  background: linear-gradient(145deg, #e8e8e8, #c3c3c3);
+  box-shadow: 1px 1px 6px #7e7e7e;
+  color: white;
+  font-size: 36px;
+}
+
+.rank-board3{
+}
+
+.rank3{
+  background: linear-gradient(145deg, #eb8949, #c6733d);
+  box-shadow: 1px 1px 6px #ea8848;
+  color: white;
+  font-size: 36px;
+}
+
+.rank-board4{
+}
+
+.rank4{
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: linear-gradient(145deg, #48b4ea, #3c97c5);
+  box-shadow: 1px 1px 6px #3f9ece;
+  color: white;
+  font-size: 30px;
+}
+
+.rank-board5{
+}
+
+.rank5{
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 32px;
+  background: linear-gradient(145deg, #40be38, #36a02f);
+  box-shadow: 1px 1px 6px #38a731;
+  color: white;
+  font-size: 30px;
+}
+
+#fa-rank{
+  font-size: 30px;
+  color: rgb(251,116,116);
+}
+
+#fa-size{
+  font-size: 32px;
+}
+
+.card{
+  background: #fff;
+  transition: background-color 0.5s;
+}
+
+.card img:hover{
+	opacity:0.5;
+	transition:0.3s;
+}
+
 #sub-btn{
   position: absolute;
   right: 74px;
@@ -65,6 +297,120 @@ a.btn-border {
 }
 
 .header_logo{
-  width: 310px;
+  width: 200px;
   height: auto ;
 }
+
+.posts{
+  width: auto;
+  height: 300px;
+}
+
+#map{
+   height: 300px;
+  width: 100%;
+}
+
+.img-reg{
+  border-top: solid;
+  border-bottom: solid;
+}
+
+#post-detail{
+  width: 95%;
+}
+
+#userMenu{
+  background-color: #fdf8b8;
+  width: 80%;
+}
+
+#user-prof{
+  top: 18px;
+}
+
+.user-name{
+  position:absolute;
+  top: 11px;
+}
+
+.post-img{
+  width: auto;
+  max-height: 600px;
+}
+
+#search-form{
+  background-color: #81caff;
+}
+
+.post-caption-val{
+  min-height: 110px;
+  height: auto ;
+}
+
+#map-info{
+  height: 52vh;
+}
+
+.tag{
+  position: relative;
+  margin-left: 30px;
+}
+
+
+.tag:after{
+  position: absolute;
+  top: calc(53% - 7px);
+  left: 7px;
+  width: 12px;
+  height: 12px;
+  content: "";
+  border-radius: 50%;
+  background: #fff;
+}
+
+#post-map{
+  width: 22vw;
+  height: 36vh;
+}
+
+.ruled-line{
+ width: 100%;
+ background-image : linear-gradient(to right, #9d9d9dad 13px, transparent 2px);
+ background-size: 34px 3px;
+ background-repeat: repeat-x; 
+ background-position: left bottom;
+ color:#f8f9fa;
+}
+
+.favorite-link {
+  text-decoration: none;
+}
+
+.favorite-btn {
+  font-size: 1em;
+  color: #808080;
+}
+
+.unfavorite-btn {
+  font-size: 1em;
+  color: #e54747;
+}
+
+#post-comments{
+  font-size: 14px;
+}
+
+.fav-btn{
+    position: relative;
+    left: 16%;
+    border-radius: 21px;
+    background: linear-gradient(145deg, #ffe4ff, #ffa6f0);
+    box-shadow: 3px 3px 6px #dda1e6;
+}
+
+.map-searchform{
+  top: 5px;
+  left: 5px;
+}
+

@@ -1,2 +1,16 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<div class="container">
+  <div class="h3">
+    最新の投稿一覧
+  </div>
+  
+  <div class="card-columns">
+    <% @posts.each do |post| %>
+    <div class="card">
+    <%= link_to post_path(post.id) do %>
+      <%= image_tag post.post_image,class:"hover-black px-0 col post-img card-img-top"%>
+    <% end %>
+    </div>
+    <% end %>
+  </div>
+  <%= paginate @posts %>
+</div>

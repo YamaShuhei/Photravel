@@ -1,2 +1,160 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<div class="container-fluid" id="post-container">
+    <!--投稿画面-->
+    <%= form_with(model: @post,local: true,multipart: true) do |f| %>
+    <div class="ml-2 mt-2 d-inline-block h3 midashi">写真投稿</div>
+    <div class="w-50 bg-white border rounded shadow-sm p-2">
+      <div class="align-middle" >
+        <%= render 'layouts/error_messages', model: f.object %>
+      </div>
+      <div class="">
+        <%= f.label :title, "タイトル" %>
+        <%= f.text_field :title, placeholder:"撮影地を入れて下さい" %>
+      </div>
+      <div class="">
+        <%= f.label :caption, "説明文" %>
+        <%= f.text_area :caption, placeholder:"説明文を記入しましょう！" %>
+      </div>
+      <div class="">
+        <%= f.label :post_image, "投稿写真" %>
+        <%= f.file_field :post_image, accept: "image/*" %>
+      </div>
+      <div>
+        <%= f.label :name, "タグ（半角スペースで区切ると複数のタグを登録できます" %>
+        <%= f.text_field :name, placeholder:"例：自然 動物　など..." %>
+      </div>
+    </div>
+
+    <!--マップ表示-->
+
+    <div class="mt-3 p-2 input-field border rounded-top w-50" id="search-form">
+      <label class="font-weight-bold mx-1">場所検索</label>
+      <input type="text" id="address" placeholder="地名・住所を入力">
+      <a class="btn btn-sm btn-success mx-1" onclick="codeAddress()">地図検索</a>
+      <a id="del" class="btn btn-sm btn-warning marker-delete right mx-1" onclick="deleteMarker()">
+      <i class="fas fa-map-marker-alt fas-2x mr-1" style="color:red"></i>マーカー削除
+      </a>
+    </div>
+    
+      <div id="map"></div>
+      <%= f.fields_for :map, @post.build_map do |map| %>
+        <%= map.hidden_field :latitude %>
+        <%= map.hidden_field :longitude %>
+        <%= map.hidden_field :address %>
+      <% end %>
+    <div class="mt-3">
+    <%= f.submit "投稿する" %>
+    </div>
+    <% end %>
+    
+
+  </div>
+
+
+<script>
+var marker
+var myLatLng
+var map
+var map_lat
+var map_lng
+var map_add
+var address
+var fixaddress
+
+
+
+function initMap(){
+  
+   myLatLng = {lat: 35.68090045006303, lng: 139.76690798417752}
+   marker = new google.maps.Marker();
+   map_lat = document.getElementById('post_map_latitude')
+   map_lng = document.getElementById('post_map_longitude')
+   map_add = document.getElementById('post_map_address')
+   map = new google.maps.Map(document.getElementById('map'), {
+  center: myLatLng,
+  zoom: 9,
+  streetViewControl: false,
+  mapTypeControl: false
+  });
+
+ google.maps.event.addListener(map, 'click', mylistener);
+
+
+
+    //クリックしたときの処理
+  function mylistener(event){
+    //markerの位置を設定
+    //event.latLng.lat()でクリックしたところの緯度を取得
+    marker.setPosition(new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()));
+    //marker設置
+    marker.setMap(map);    
+    map_lat.value = event.latLng.lat();
+    map_lng.value = event.latLng.lng();
+    console.log(map_lat.value,map_lng.value);
+    
+
+    
+    let latLngInput = new google.maps.LatLng(map_lat.value,  map_lng.value);
+    // マーカークリック時に住所取得
+    geocoder = new google.maps.Geocoder()
+    
+    geocoder.geocode( { 
+    'latLng': latLngInput,
+    }, function(results, status) {
+    if (status == 'OK') {
+      address = results[0].formatted_address;
+      fixaddress = address.replace( /........日本、|日本、|〒.........|/g, "");
+      map.setCenter(results[0].geometry.location);
+      map_result = results[0].geometry.location;
+      map_lat.value = map_result.lat();
+      map_lng.value = map_result.lng();
+      marker.setPosition(new google.maps.LatLng(map_result.lat(), map_result.lng()));
+      marker.setMap(map);
+      console.log(map_lat.value,map_lng.value);
+      console.log(fixaddress);
+    } else {
+      alert('該当する結果がありませんでした');
+      initMap();
+    }
+    document.getElementById('post_map_address').value = fixaddress;
+    
+
+  });   
+    
+  }
+  
+}
+
+function deleteMarker(){
+  marker.setMap(null);
+  map_lat.value = "";
+  map_lng.value = "";
+}
+
+function codeAddress(){
+  geocoder = new google.maps.Geocoder()
+  let inputAddress = document.getElementById('address').value;
+  geocoder.geocode( { 
+    'address': inputAddress
+    }, function(results, status) {
+       address = "";
+    if (status == 'OK') {
+      address = results[0].formatted_address;
+      fixaddress = address.replace( /........日本、|日本、|〒.........|/g, "");
+      map.setCenter(results[0].geometry.location);
+      map_result = results[0].geometry.location;
+      map_lat.value = map_result.lat();
+      map_lng.value = map_result.lng();
+      marker.setPosition(new google.maps.LatLng(map_result.lat(), map_result.lng()));
+      marker.setMap(map);
+      console.log(map_lat.value,map_lng.value);
+      console.log(fixaddress);
+    } else {
+      alert('該当する結果がありませんでした');
+      initMap();
+    }
+    document.getElementById('post_map_address').value = fixaddress;
+  });   
+}
+
+
+</script>

@@ -1,42 +1,66 @@
 <header class="shadow-sm">
   <!--メニューバー-->
-  <nav class="navbar navbar-expand-lg navbar-light">
+  <nav class="navbar navbar-expand-lg navbar-light pb-0">
     <div class="container-fluid">
       <%= link_to image_tag("photravel.png", class:"header_logo", alt:"Photravel"), "/" %>
       
       <div class="collapse navbar-collapse d-flex flex-row-reverse " id="navbarNav">
         <ul class="navbar-nav">
-        <!--ユーザー用ヘッダー-->
+        <!--ヘッダー-->
+        <!--ユーザーサインイン時-->
         <% if user_signed_in? %>
           <li class="nav-item"><%= link_to "マイページ", user_path(current_user), method: :get, class: 'nav-link text-dark' %></li>
           <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+        <!--管理者サインイン時-->
+        <% elsif admin_signed_in? %>
+          <li class="nav-item">
+            <%= link_to admin_root_path, class: 'd-inline-block nav-link text-dark' do %>
+              <i class="fa-solid fa-images"></i> 投稿一覧(管理者用)
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
+            <i class="fa-solid fa-right-from-bracket"></i>管理者ログアウト
+            <% end %>
+            </li>
         <% else %>
-          <li class="nav-item"><%= link_to "ログイン", new_user_session_path, method: :get, class: 'nav-link text-dark' %></li>
-          <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, method: :get, class: 'nav-link text-dark' %></li>
+          <!--サインアウト中かつURLに/adminが含まれる場合-->
+          <% if request.fullpath.include? "/admin" %>
+            <li class="nav-item">
+            <%= link_to new_admin_session_path, method: :get, class: 'nav-link text-dark' do %>
+            <i class="fa-solid fa-right-to-bracket"></i>管理者ログイン
+            <% end %>
+            </li>
+          <!--URLにadminが含まれない場合-->
+          <% else %>
+            <li class="nav-item"><%= link_to "ログイン", new_user_session_path, method: :get, class: 'nav-link text-dark' %></li>
+            <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, method: :get, class: 'nav-link text-dark' %></li>
+          <% end %>
         <% end %>
         
-        <!--管理者用ヘッダー-->
-        <% if admin_signed_in? %>
-          <li class="nav-item"><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
-        <% else %>
-          <li class="nav-item"><%= link_to "管理者ログイン", new_admin_session_path, method: :get, class: 'nav-link text-dark' %></li>
-        <% end %>
         </ul>
       </div>
       
     </div>
   </nav>
-  
+      
+  <!--管理者サイドでは表示させない-->
+  <% unless request.fullpath.include? "/admin" %>
   <!--検索・投稿フォーム-->
-  <div class="container-fluid border-top py-3">
-    <div class="row justify-content-md-center">
-      <%= link_to "写真を探す", posts_path, class:"col col-lg-2" %>
-      <div class="search-form col-md-auto">
-        <input size="30" type="text" placeholder="検索窓"/>
-        <button>検索する</button>
+  <div class="container-fluid border-top py-2">
+    <div class="row justify-content-md-around d-flex align-items-center">
+      <!--投稿検索（最新投稿）-->
+      <%= link_to "写真を探す", posts_path, class:"fusen mr-2" %>
+      <%= link_to "マップから探す", map_posts_path, class:"fusen" %>
+      <!--検索フォーム-->
+      <div class="col-3">
+      <%= render partial: 'layouts/search' %>
       </div>
-      <%= link_to "投稿する", new_post_path, class:"col col-lg-2" %>
+      <!--投稿フォームへ-->
+      <%= link_to "投稿する", new_post_path, class:"fusen" %>
+      <div class="offset-1"></div>
     </div>
   </div>
+  <% end %>
   
 </header>

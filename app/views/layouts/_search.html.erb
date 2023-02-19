@@ -1,0 +1,6 @@
+<%= form_with(url: search_posts_path, local: true, method: :get, class: "search-form-1") do |f| %>
+  <%= f.text_field :keyword, placeholder: "検索する", class: "w-100 search-input" %>
+  <%= button_tag type: "submit", class:"bg-light" do %>
+    <i class="fa-solid fa-magnifying-glass faa-shake animated-hover"></i>
+  <% end %>
+<% end %>

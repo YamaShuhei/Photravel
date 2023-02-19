@@ -1,32 +1,8 @@
 /*global $*/
-$( () =>{
 
-  
-});
-
-//枠外クリックした場合非表示に
-$(document).on('click', function(e) {
-	//クリックされた場所の判定
-	if(!$(e.target).closest('.profileMenu').length && !$(e.target).closest('#next-btn').length){
-		$('.profileMenu-back').fadeOut();
-	}else if($(e.target).closest('#next-btn').length){
-		// ３．ポップアップの表示状態の判定
-		if($('.profileMenu-back').is(':hidden')){
-			$('.profileMenu-back').fadeIn();
-		}else{
-			$('.profileMenu-back').fadeOut();
-		}
-	}else if($(e.target).closest('#close-btn').length){
-		if($('.profileMenu-back').is(':visible')){
-			$('.profileMenu-back').fadeOut();
-		}
-	}
-});
-
-
-
-// プレビュー画像表示用
-if (document.URL.match(/sign_up/) || document.URL.match(/new/)){
+// サインアップ・編集画面用
+if (document.URL.match(/sign_up/)||document.URL.match(/edit/)){
+  // プレビュー画像表示用
   document.addEventListener('DOMContentLoaded', () => {
       const createImageHTML = (blob) => {  
       const imageElement = document.getElementById('img-prev'); 
@@ -46,4 +22,30 @@ if (document.URL.match(/sign_up/) || document.URL.match(/new/)){
       createImageHTML(blob); 
     });
   });
+  
+  // 枠外クリックで非表示に
+  $(document).on('click', function(e) {
+	//クリックされた場所の判定
+	if(!$(e.target).closest('.profileMenu').length && !$(e.target).closest('#next-btn').length){
+		$('.profileMenu-back').fadeOut();
+	}else if($(e.target).closest('#next-btn').length){
+		// ３．ポップアップの表示状態の判定
+		if($('.profileMenu-back').is(':hidden')){
+			$('.profileMenu-back').fadeIn();
+		}else{
+			$('.profileMenu-back').fadeOut();
+		}
+	}else if($(e.target).closest('#close-btn').length){
+		if($('.profileMenu-back').is(':visible')){
+			$('.profileMenu-back').fadeOut();
+		}
+	}
+});
 }
+
+$(function(){
+  setTimeout("$('.notice').fadeOut('slow')", 2000);
+});
+$(function(){
+  setTimeout("$('.alert').fadeOut('slow')", 2000);
+});

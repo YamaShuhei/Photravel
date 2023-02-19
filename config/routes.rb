@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/new'
-    get 'posts/create'
-    get 'posts/edit'
-    get 'posts/ranking'
-    get 'posts/search'
-  end
   #Devise関連のルーティング
   ##管理者用
   devise_for :admin,skip:[:registrations, :passwords], controllers: {
@@ -23,8 +14,16 @@ Rails.application.routes.draw do
 # ユーザー側のルーティング設定
 scope module: :public do
   root to: 'homes#top'
-  resources :posts
-  resources :users, only:[:show, :edit]
+  resources :posts, only:[:new, :create, :index, :show, :edit, :update, :destroy] do
+    get 'show_detail'
+    resources :comments, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy]
+    collection do
+      get 'search'
+      get 'map'
+    end
+  end
+  resources :users, only: [:show, :edit ,:update]
 
 end
 
