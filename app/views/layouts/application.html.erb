@@ -15,11 +15,14 @@
   </head>
 
   <body>
+
       <%= render 'layouts/header' %>
       <%= render 'shared/flash_message' %>
       <main class="mt-2">
         <%= yield %>
       </main>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY']%>&callback=initMap" async defer></script> 
+    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
     <script>
       $(function(){
         setTimeout("$('.notice-flash').fadeOut('slow')", 2000);
@@ -28,5 +31,6 @@
         setTimeout("$('.alert-flash').fadeOut('slow')", 2000);
       });
     </script>
+    
   </body>
 </html>

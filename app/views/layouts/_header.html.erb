@@ -50,14 +50,20 @@
   <div class="container-fluid border-top py-2">
     <div class="row justify-content-md-around d-flex align-items-center">
       <!--投稿検索（最新投稿）-->
+      
       <%= link_to "写真を探す", posts_path, class:"fusen mr-2" %>
-      <%= link_to "マップから探す", map_posts_path, class:"fusen" %>
+      
+      <div data-turbolinks="false">
+        <%= link_to "マップから探す", map_posts_path, class:"fusen" %>
+      </div>
       <!--検索フォーム-->
       <div class="col-3">
       <%= render partial: 'layouts/search' %>
       </div>
       <!--投稿フォームへ-->
-      <%= link_to "投稿する", new_post_path, class:"fusen" %>
+      <div data-turbolinks="false">
+        <%= link_to "投稿する", new_post_path, class:"fusen" %>
+      </div>
       <div class="offset-1"></div>
     </div>
   </div>
