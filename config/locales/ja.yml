@@ -1,0 +1,15 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+      post:
+        title: タイトル
+        caption: 説明文
+        post_image: 画像
+      comment:
+        comment: コメント
+  # activemodel:   # Formオブジェクトを用いた場合
+  #   attributes:
+  #     order_object:
+  #       post_code: 郵便番号

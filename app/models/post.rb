@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   
   validates_associated :map
   
-  validates :post_image, presence: true
+  validates :post_image, presence: { message: 'を選択してください' }
   validates :title, presence: true
   validates :caption, presence: true
   

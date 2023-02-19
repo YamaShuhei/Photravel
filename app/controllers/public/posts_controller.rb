@@ -51,10 +51,12 @@ class Public::PostsController < ApplicationController
         redirect_to post_path(@post.id),notice:"投稿しました"
       else
         flash.now[:alert] = "エラーです"
+        @post = Post.new(post_params)
         render :new
       end
     else
       flash.now[:alert] = "マップ上をクリックして下さい"
+      @post = Post.new(post_params)
       render :new
     end
   end
