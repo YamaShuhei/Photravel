@@ -4,7 +4,6 @@
       <div class="col-3 text-truncate px-0">
         <%= link_to user_path(comment.user_id), class:"text-dark text-decoration-none" do %>
           <%= image_tag comment.user.get_profile_image(50,50),class:"rounded-circle" %><span class="ml-1 h6 text-black font-weight-bold"><%= comment.user.name %></span>
-          
         <% end %>
       </div>
       <div class="col-7" id="post-comments">
@@ -12,7 +11,9 @@
         <div>（<%= comment.created_at.to_s(:datetime_jp) %>）</div>
       </div>
       <div class="col-2">
+        <% if current_user.id == comment.user_id %>
           <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, data: {confirm: "コメントを削除しますか？"}, remote: true, class:"btn btn-sm btn-danger mr-2" %>
+        <% end %>
       </div>
     </div>
   <% end %>
