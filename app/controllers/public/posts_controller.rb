@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
   before_action :is_matching_login_user, only: [:destroy, :edit, :update]
   
   def index
