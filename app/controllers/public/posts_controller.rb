@@ -65,6 +65,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @lat = @post.map.latitude
     @lng = @post.map.longitude
+    @map = @post.map
     user_id = @post.user_id
     gon.lat = @lat
     gon.lng = @lng
@@ -92,20 +93,30 @@ class Public::PostsController < ApplicationController
        @post.save_tag(tag_list)
        redirect_to post_path(@post.id),notice:'更新しました'
     else
-      redirect_to request.referer
+      @post = Post.find(params[:id])
+      @lat = @post.map.latitude
+      @lng = @post.map.longitude
+      gon.lat = @lat
+      gon.lng = @lng
+      @tag_list=@post.tags.pluck(:name).join(' ')
+      flash.now[:alert] = "エラーです、内容を確認して下さい"
+      render :edit
     end
   end
   
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    redirect_to current_user_path
   end
   
   def map
     @maps = Map.all
     gon.maps = Map.all
-    @posts = Post.all
-    gon.posts = Post.all
+    @post_urls = Post.all.with_attached_post_image
+    @post_urls = @post_urls.map { |image_url| image_url.as_json.merge({ image_url: url_for(image_url.post_image) })}
+    gon.posts = @post_urls
+    gon.users = User.all
   end
 
   def ranking
@@ -123,7 +134,8 @@ class Public::PostsController < ApplicationController
   end
   
   def is_matching_login_user
-    user_id = params[:id].to_i
+    @post = Post.find(params[:id])
+    user_id = @post.user_id
     unless user_id == current_user.id
       redirect_to posts_path
     end

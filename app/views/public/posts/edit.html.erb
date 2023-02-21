@@ -1,35 +1,42 @@
-
-
-<div class="container">
-  <div>編集画面です</div>
+<div class="container mt-3">
+  <div class="midashi">投稿編集画面</div>
   
-  <div>
+  <div class="col-9 mx-auto">
     <%= form_with(model: @post,local: true) do |f| %>
-      <div class="field">
-        <div>
-          <%= f.label :title, "タイトル"%>
-          <%= f.text_field :title %>
+      <div class="field p-3 border rounded">
+        <div class="form-group row field">
+          <%= f.label :title, "タイトル：", class:"col-2"%>
+          <%= f.text_field :title, class:"col-4 form-control" %>
         </div>
-        <div>
-          <%= f.label :caption, "説明文" %>
-          <%= f.text_area :caption %>
+        <div class="form-group row field">
+          <%= f.label :caption, "説明文：", class:"col-2" %>
+          <%= f.text_area :caption, class:"col-8 form-control" %>
         </div>
         
-        <div>マップ</div>
-          <div id="map"></div>
+        
+          <div>マップ</div>
+          <div id="map" style="width:50vw;"></div>
           <%= f.fields_for :map, @post.map do |map| %>
             <%= map.hidden_field :latitude %>
             <%= map.hidden_field :longitude %>
-            <%= map.hidden_field :address %>
+          <div class="form-group row field mt-4 ml-2">
+            <%= map.label :address, "住所：",class:"d-flex align-items-center" %>
+            <%= map.text_field :address, class:"w-50 form-control" %>
+          </div>
           <% end %>
-        <div>
-        <%= f.label :name, "タグ：半角スペースで区切ると複数タグ登録)" %>
-        <%= f.text_field :name,value: @tag_list,class:"form-control w-50"%>
+        
+        
+        <div class="ml-4">
+        <%= f.label :name, "タグ：半角スペースで区切ると複数タグ登録)", class:"row" %>
+        <%= f.text_field :name,value: @tag_list,class:"form-control w-50 row ml-4"%>
         </div>
       </div>
     
-    　<div class="actions" style="margin:20px 0;">
-        <%= f.submit "投稿",class:"btn btn-outline-primary btn-block" %>
+    　<div class="actions float-right" style="margin:20px 0;">
+        <%= f.submit "投稿を更新",class:"btn btn-success" %>
+        <%= link_to post_path(@post.id) do %>
+        <div class="btn btn-primary">戻る</div>
+        <% end %>
       </div>
     
     <% end %>

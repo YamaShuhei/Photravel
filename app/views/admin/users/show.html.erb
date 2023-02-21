@@ -1,2 +1,104 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class ="container my-5" >
+  <div>
+    <div class="h5 d-inline-block midashi"><%= @user.name %></div>
+  </div>
+  <% if @user.present? %>
+  
+  <!--ユーザー情報欄-->
+  <div id ="userMenu" class="p-2 bg-light mx-auto shadow-sm">
+    <div class="d-flex">
+      <div class="d-flex align-items-center text-center col-4 col-md-3">
+        <%= image_tag @user.get_profile_image(200,200),class:"rounded img-fluid" %>
+      </div>
+      <div class="col-8 col-md-9">
+        <!--ユーザー名-->
+        <div class="row border-bottom">
+          <p class="col-3">ユーザー名</p>
+          <p class="col-9"><%= @user.name %></p>
+        </div>
+        <!--投稿件数、フォローフォロワ-->
+        <div class="row border-bottom">
+          <div class="col-3">投稿件数</div>
+          <div class="col-9"><%= @user.posts.count %>件</div>
+          <!--<p class="col">フォロー<%= @user.followings.count %>人</p>-->
+          <!--<p class="col">フォロワー<%= @user.followers.count %>人</p>-->
+        </div>
+        <!--自己紹介文（登録がなければその旨表示）-->
+        <div class="row">
+          <% if @user.introduction.present? %>
+            <p class="col-3">自己紹介文</p>
+            <div class="col-9"><%= @user.introduction %></div>
+          <% else %>
+            <p>自己紹介文の登録がありません。</p>
+          <% end %>
+        </div>
+      </div>
+      
+    </div>
+    <% else %>
+    <p>ユーザー情報がありません。</p>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid border-top" id="user-detail">
+  <!--選択ボタン-->
+  <div class="row justify-content-center">
+    <div class="list-group list-group-horizontal" id="mylist" role="tablist">
+      <a class="col list-group-item list-group-item-action active text-nowrap" data-toggle="list" href="#new" role="tab">最新の投稿</a>
+      <a class="col list-group-item list-group-item-action text-nowrap" data-toggle="list" href="#favorite" role="tab">いいねした作品</a>
+    </div>
+  </div>
+  
+  <!--表示コンテンツ-->
+  <div class="tab-content">
+    <!--最新の投稿を表示-->
+    <div class="tab-pane active" id="new" role="tabpanel">
+      <% if @post.present? %>
+      <div class="card-columns mt-3">
+        <% @post.each do |post| %>
+        <div class="card">
+          <%= link_to admin_post_path(post.id) do %>
+            <div class="bg-dark text-center">
+              <%= image_tag post.post_image, class: "px-0 col post-img bd-placeholder-img card-img-top" %>
+            </div>
+            <div class="card-body p-3">
+              <p class="card-text"><%= post.title %></p>
+          <% end %>
+              <p class="card-text"><%= post.user.name %></p>
+              <p class="card-text text-right"><%= post.created_at.strftime('%Y年%m月%d日') %></p>
+            </div>
+        </div>
+        <% end %>
+        </div>
+      <% else %>
+      <div>投稿はありません。</div>
+      <% end %>
+    </div>
+    <!--いいねした作品を表示-->
+    <div class="tab-pane" id="favorite" role="tabpanel">
+       <% if @fav_post.present? %>
+      <div class="card-columns mt-3">
+        <% @fav_post.each do |post| %>
+        <div class="card">
+          <%= link_to admin_post_path(post.id) do %>
+            <div class="bg-dark text-center">
+              <%= image_tag post.post_image, class: "px-0 col post-img bd-placeholder-img card-img-top" %>
+            </div>
+            <div class="card-body p-3">
+              <p class="card-text"><%= post.title %></p>
+          <% end %>
+              <p class="card-text"><%= post.user.name %></p>
+              <p class="card-text text-right"><%= post.created_at.strftime('%Y年%m月%d日') %></p>
+            </div>
+        </div>
+        <% end %>
+        </div>
+      <% else %>
+      <div>いいねした投稿はありません。</div>
+      <% end %>
+    </div>
+  </div>
+  
+</div>

@@ -16,4 +16,6 @@ class Admin::PostsController < ApplicationController
     @post.destroy
     redirect_to admin_root_path, notice:"投稿の削除が完了しました"
   end
+
+  
 end

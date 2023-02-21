@@ -3,7 +3,7 @@
   <!--マップ-->
   <div id="map" style="height:85vh;" class="position-absolute" data-turbolinks='false'></div>
   <!--検索フォーム-->
-  <div class="d-inline-block bg-light border p-2 position-absolute map-searchform  ">
+  <div class="d-inline-block bg-light border p-2 position-absolute map-searchform">
     <label class="font-weight-bold mx-1">場所検索</label>
     <input type="text" id="address" placeholder="地名・住所を入力">
     <a class="btn btn-sm btn-success mx-1" onclick="codeAddress()">地図検索</a>  
@@ -17,6 +17,7 @@ var map
 let infoWindow = [];
 let markerData = gon.maps;
 let postData = gon.posts;
+let userData =gon.users;
 
 $(()=>{
     $('#footer').hide();
@@ -39,10 +40,17 @@ function initMap(){
   for (var i = 0; i < markerData.length; i++){
     let id = markerData[i]['id']
     let postId = markerData[i]['post_id']
+    let userId = postData[i]['user_id']
+    let postImage = postData[i]['post_image']
+    let userName = userData[userId-1]['name']
+    let imageUrl = postData[i]['image_url']
+
     let contentStr = 
-    `<a href='/posts/${postId}'>` +
-    `<div class="text-center">「${postData[i]['title']}」</div>` +
-    `<div>${markerData[i]['address']}</div>` +
+    `<a href='/posts/${postId}' class="map-marker">` +
+    `<div class="text-center"><img src="${imageUrl}" class="map-img" /></div>`+
+    `<div>「${postData[i]['title']}」</div>` +
+    `<div class="text-truncate"style="max-width: 150px;">${markerData[i]['address']}</div>` +
+    `<div>投稿者：${userName}</div>` +
     `</a>`;
     
     

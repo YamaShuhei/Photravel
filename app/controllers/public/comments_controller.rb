@@ -18,7 +18,6 @@ class Public::CommentsController < ApplicationController
     flash.now[:alert] = "投稿を削除しました"
     @post = Post.find(params[:post_id])
     render :post_comments
-    
   end
   
   private

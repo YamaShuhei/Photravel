@@ -1,7 +1,7 @@
 <div class="container">
-    <div class="d-inline-block h1 p-1 border rounded font-weight-bold bg-light">新規登録</div>
+    <div class="mt-4 h1 midashi">新規登録</div>
   
-  <div class="col-10 mt-3">
+  <div class="col-11 mt-3">
     <%= form_with model: @user, url: user_registration_path ,local: true do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
     

@@ -19,6 +19,11 @@
           <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, data: {confirm: "コメントを削除しますか？"}, remote: true, class:"btn btn-sm btn-danger mr-2" %>
         <% end %>
       <% end %>
+      <!--管理者がログインしている場合削除ボタン表示-->
+      <% if admin_signed_in? %>
+          <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete, data: {confirm: "コメントを管理者削除しますか？"}, remote: true, class:"btn btn-sm btn-danger mr-2" %>
+      <% end %>
+      
       </div>
     </div>
   <% end %>

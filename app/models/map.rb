@@ -5,4 +5,5 @@ class Map < ApplicationRecord
   after_validation :geocode
   validates :latitude, presence: true
   validates :longitude, presence: true
+  validates :address, presence: true
 end

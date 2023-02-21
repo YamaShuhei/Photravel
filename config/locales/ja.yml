@@ -3,6 +3,9 @@ ja:
     attributes:
       user:
         name: ユーザー名
+        email: メールアドレス
+      admin:
+        email: メールアドレス
       post:
         title: タイトル
         caption: 説明文

@@ -1,5 +1,3 @@
-
-
 <div class="container-fluid px-0">
   <div class="text-center">
     
@@ -13,6 +11,7 @@
         <% if user_signed_in? %>
           <% if @post.user_id == current_user.id %>
             <%= link_to "投稿編集", edit_post_path(@post.id), class:"ml-3 btn btn-secondary"%>
+            <%= link_to "投稿削除", post_path(@post.id), data: {confirm: "投稿を管理者削除しますか？"}, method: :delete, class:"ml-3 btn btn-danger"%>
           <% end %>
         <% end %>
           </div>
@@ -113,7 +112,7 @@
 var marker
 var myLatLng
 var map
-
+// GoogleMap表示
 function initMap(){
    myLatLng = new google.maps.LatLng({lat: gon.lat, lng: gon.lng});
    map = new google.maps.Map(document.getElementById('post-map'), {

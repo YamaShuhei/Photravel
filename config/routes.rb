@@ -16,7 +16,7 @@ scope module: :public do
   root to: 'homes#top'
   resources :posts, only:[:new, :create, :index, :show, :edit, :update, :destroy] do
     get 'show_detail'
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy] 
     resources :favorites, only: [:create, :destroy]
     collection do
       get 'search'
@@ -30,8 +30,11 @@ end
 #管理者側のルーティング設定
 namespace :admin do
   root to: "homes#top"
-  resources :posts, only:[:show, :destroy]
-  resources :users, only:[:show, :edit]
+  resources :posts, only:[:show, :destroy] do
+    resources :comments, only:[:destroy]
+  end
+  resources :users, only:[:show]
+
 end
 
 end
