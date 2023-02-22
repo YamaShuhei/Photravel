@@ -7,6 +7,10 @@ body {
   background-color: #f8f9fa;
 }
 
+.bg-alice{
+ background: aliceblue;
+}
+
 .pagination {
   justify-content: center;
 }
@@ -155,12 +159,12 @@ body {
 
 .profileMenu{
   position: absolute;
-  top: 10%;
-  left: 15%;
+  top: 4%;
+  left: 6%;
   background-color: #e6ecf0;
-  padding: 20px 0 40px;
+  padding: 20px 10px 90px;
   border-radius: 10px;
-  width: 70%;
+  width: 88%;
   height: auto;
   text-align: center;
 }

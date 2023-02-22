@@ -73,7 +73,7 @@ function initMap(){
   center: myLatLng,
   zoom: 9,
   streetViewControl: false,
-  mapTypeControl: false
+  mapTypeControl: false,
   });
 
  google.maps.event.addListener(map, 'click', mylistener);
@@ -86,7 +86,7 @@ function initMap(){
     //event.latLng.lat()でクリックしたところの緯度を取得
     marker.setPosition(new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()));
     //marker設置
-    marker.setMap(map);    
+    marker.setMap(map);
     map_lat.value = event.latLng.lat();
     map_lng.value = event.latLng.lng();
     console.log(map_lat.value,map_lng.value);

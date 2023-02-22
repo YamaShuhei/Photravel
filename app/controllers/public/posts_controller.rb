@@ -123,7 +123,8 @@ class Public::PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:keyword])
+    @post_counts = Post.search(params[:keyword])
+    @posts = Post.search(params[:keyword]).page(params[:page])
   end
   
   

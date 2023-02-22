@@ -1,72 +1,80 @@
 <header class="shadow-sm">
   <!--メニューバー-->
-  <nav class="navbar navbar-expand-lg navbar-light pb-0">
+  <nav class="navbar navbar-expand-md navbar-light">
     <div class="container-fluid">
-      <%= link_to image_tag("photravel.png", class:"header_logo", alt:"Photravel"), "/" %>
-      
-      <div class="collapse navbar-collapse d-flex flex-row-reverse " id="navbarNav">
-        <ul class="navbar-nav">
+      <!--ロゴ-->
+      <%= link_to image_tag("photravel.png", class:"header_logo navbar-brand", alt:"Photravel"), "/" %>
+      <!--ハンバーガーアイコン-->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--メニュー内容-->
+      <div class="collapse navbar-collapse justify-content-end navbarSupportedContent">
+        <ul class="navbar-nav float-right">
         <!--ヘッダー-->
         <!--ユーザーサインイン時-->
         <% if user_signed_in? %>
-          <li class="nav-item"><%= link_to "マイページ", user_path(current_user), method: :get, class: 'nav-link text-dark' %></li>
-          <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+          <li class="nav-item m-1"><%= link_to user_path(current_user), method: :get, class: 'p-1 shadow-sm nav-link text-dark bg-light rounded-lg' do%><i class="fa-solid fa-circle-user fa-lg"></i>マイページ<% end %></li>
+          <li class="nav-item m-1"><%= link_to destroy_user_session_path, method: :delete, class: 'p-1 shadow-sm nav-link bg-light rounded-lg text-dark' do%><i class="fa-solid fa-person-walking-dashed-line-arrow-right fa-lg"></i>ログアウト <% end %></li>
+          <li class="nav-item d-md-none	m-1"><%= link_to posts_path, class:"p-1 shadow-sm nav-link text-dark bg-light rounded-lg" do%><i class="fa-solid fa-camera-retro fa-lg"></i>写真を探す<% end %></li>
+          <li class="nav-item d-md-none	m-1"><%= link_to map_posts_path, class:"p-1 shadow-sm nav-link text-dark bg-light rounded-lg" do %><i class="fa-solid fa-magnifying-glass-location fa-lg"></i>マップで探す<% end %></li>
+          <li class="nav-item d-md-none	m-1"><%= link_to new_post_path, class:"p-1 shadow-sm nav-link text-dark bg-light rounded-lg" do %><i class="fa-solid fa-feather fa-lg"></i>投稿する<% end %></li>
         <!--管理者サインイン時-->
         <% elsif admin_signed_in? %>
+        <!--投稿一覧へ（管理者用）-->
           <li class="nav-item">
             <%= link_to admin_root_path, class: 'd-inline-block nav-link text-dark' do %>
               <i class="fa-solid fa-images"></i> 投稿一覧(管理者用)
             <% end %>
           </li>
+          <!--ログアウト（管理者用）-->
           <li class="nav-item">
             <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
             <i class="fa-solid fa-right-from-bracket"></i>管理者ログアウト
             <% end %>
-            </li>
+          </li>
         <% else %>
           <!--サインアウト中かつURLに/adminが含まれる場合-->
           <% if request.fullpath.include? "/admin" %>
+          <!--管理者ログイン-->
             <li class="nav-item">
             <%= link_to new_admin_session_path, method: :get, class: 'nav-link text-dark' do %>
-            <i class="fa-solid fa-right-to-bracket"></i>管理者ログイン
+              <i class="fa-solid fa-right-to-bracket"></i>管理者ログイン
             <% end %>
             </li>
           <!--URLにadminが含まれない場合-->
           <% else %>
-            <li class="nav-item"><%= link_to "ログイン", new_user_session_path, method: :get, class: 'nav-link text-dark' %></li>
-            <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, method: :get, class: 'nav-link text-dark' %></li>
+            <li class="nav-item	m-1"><%= link_to new_user_session_path, method: :get, class: 'p-1 shadow-sm nav-link text-dark bg-light rounded-lg' do %><i class="fa-solid fa-right-to-bracket fa-lg"></i>ログイン<% end %></li>
+            <li class="nav-item	m-1"><%= link_to new_user_registration_path, method: :get, class: 'p-1 shadow-sm nav-link text-dark bg-light rounded-lg' do %><i class="fa-solid fa-person-circle-plus fa-lg"></i>新規登録<% end %></li>
+            <li class="nav-item d-md-none	m-1"><%= link_to posts_path, class:"p-1 shadow-sm nav-link text-dark bg-light rounded-lg" do %><i class="fa-solid fa-camera-retro fa-lg"></i>写真を探す<% end %></li>
+            <li class="nav-item d-md-none	m-1"><%= link_to map_posts_path, class:"p-1 shadow-sm nav-link text-dark bg-light rounded-lg" do %><i class="fa-solid fa-magnifying-glass-location fa-lg"></i>マップで探す<% end %></li>
           <% end %>
         <% end %>
-        
         </ul>
       </div>
-      
     </div>
   </nav>
-      
   <!--管理者サイドでは表示させない-->
   <% unless request.fullpath.include? "/admin" %>
   <!--検索・投稿フォーム-->
   <div class="container-fluid border-top py-2">
-    <div class="row justify-content-md-around d-flex align-items-center">
+    <div class="justify-content-md-around justify-content-sm-center d-flex align-items-center">
       <!--投稿検索（最新投稿）-->
-      
-      <%= link_to "写真を探す", posts_path, class:"fusen mr-2" %>
-      
-      <div data-turbolinks="false">
-        <%= link_to "マップから探す", map_posts_path, class:"fusen" %>
+      <div class="d-none d-md-block">
+        <%= link_to "写真を探す", posts_path, class:"fusen mr-2" %>
+      </div>
+      <div class="d-none d-md-block" data-turbolinks="false">
+        <%= link_to "マップで探す", map_posts_path, class:"fusen" %>
       </div>
       <!--検索フォーム-->
-      <div class="col-3">
+      <div class="col-sm-10 col-md-5">
       <%= render partial: 'layouts/search' %>
       </div>
       <!--投稿フォームへ-->
-      <div data-turbolinks="false">
+      <div class="d-none d-md-block" data-turbolinks="false">
         <%= link_to "投稿する", new_post_path, class:"fusen" %>
       </div>
-      <div class="offset-1"></div>
     </div>
   </div>
   <% end %>
-  
 </header>

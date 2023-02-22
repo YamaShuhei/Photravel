@@ -1,35 +1,35 @@
 <div class="container">
     <div class="mt-4 h1 midashi">新規登録</div>
   
-  <div class="col-11 mt-3">
+  <div class="col-12 mt-3 mx-auto ">
     <%= form_with model: @user, url: user_registration_path ,local: true do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
     
       <!--メールアドレス入力欄-->
-      <div id="new-form" class="border rounded p-3">
-        <div class="form-group row field pt-4">
-          <%= f.label :email, "メールアドレス", class:"col-3" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-6 form-control" %>
+      <div id="new-form" class="bg-alice border rounded p-3 pl-3">
+        <div class="form-group field pt-4">
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-sm-12 col-md-8 form-control" %>
         </div>
         
         <!--名前入力欄-->
-        <div class="form-group row field">
-          <%= f.label :name, "ユーザー名", class:"col-3" %>
-          <%= f.text_field :name, class:"col-4 form-control" %>
+        <div class="mx-auto form-group field">
+          <%= f.label :name, "ユーザー名" %>
+          <%= f.text_field :name, class:"col-10 col-md-4 form-control" %>
         </div>
       
         <!--パスワード入力欄-->
-        <div class="form-group row field">
+        <div class="form-group field">
           <% if @minimum_password_length %>
-          <%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)", class:"col-3" %>
+          <%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %>
           <% end %>
-          <%= f.password_field :password, autocomplete: "new-password", class:"col-4 form-control" %>
+          <%= f.password_field :password, autocomplete: "new-password", class:"col-7 col-md-4 form-control" %>
         </div>
         
         <!--パスワード確認-->
-        <div class="form-group row field">
-          <%= f.label :password_confirmation, "パスワード確認", class:"col-3" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-4 form-control" %>
+        <div class="form-group field">
+          <%= f.label :password_confirmation, "パスワード確認" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-7 col-md-4 form-control" %>
         </div>
         <!--ボタン-->
         <div class="text-right">
@@ -39,7 +39,7 @@
       </div>
       
       <!--ログインフォームへの遷移用-->
-      <div class="d-inline-block border rounded col-6 mt-5 p-3 text-center float-right">
+      <div class="d-inline-block border rounded col-10 col-md-6 my-3 p-3 text-center float-right">
         <span class="align-middle mr-3">アカウントをお持ちの方は</span><%= render "public/shared/links" %>
       </div>
 
@@ -53,20 +53,20 @@
         <a class="btn btn-border">✖</a>
       </div>
       
-      <div class="h3">詳細設定</div>
-      <div class="h5 mb-5">（※プロフィールは登録後の設定と変更が可能です。）</div>
+      <div class="h3 font-weight-bold">詳細設定</div>
+      <div class="h6 mb-4">※アカウント登録後の設定も可能です。</div>
       
-      <div class="form-group row field">
-        <%= f.label :introduction, "自己紹介文", class:"col-3" %>
-        <%= f.text_area :introduction, placeholder:"ここに自己紹介文をいれてください",class:"col-8 form-control",rows:"5" %>
+      <div class="form-group field">
+        <%= f.label :introduction, "自己紹介文", class:"font-weight-bold pl-0 col-8" %>
+        <%= f.text_area :introduction, placeholder:"ここに自己紹介文をいれてください",class:"col-12 col-md-10 form-control mx-auto",rows:"5" %>
       </div>
       
-      <div class="form-group row field">
-        <%= f.label :profile_image, "プロフィール画像", class:"col-3" %>
+      <div class="form-group field ">
+        <%= f.label :profile_image, "プロフィール画像", class:"font-weight-bold pl-0 col-8" %>
         <div><%= f.file_field :profile_image, accept: "image/*" %></div>
       </div>
         <div id="img-prev"></div>
-        <%= f.submit "登録する",class:"btn btn-lg btn-success", id:"sub-btn"%>
+        <div class="row"><%= f.submit "登録する",class:"btn btn-lg btn-success", id:"sub-btn"%></div>
     </div>
     
   </div>

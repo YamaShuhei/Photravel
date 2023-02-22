@@ -46,7 +46,7 @@ function initMap(){
     let imageUrl = postData[i]['image_url']
 
     let contentStr = 
-    `<a href='/posts/${postId}' class="map-marker">` +
+    `<a href='/posts/${postId}' class="text-dark map-marker">` +
     `<div class="text-center"><img src="${imageUrl}" class="map-img" /></div>`+
     `<div>「${postData[i]['title']}」</div>` +
     `<div class="text-truncate"style="max-width: 150px;">${markerData[i]['address']}</div>` +
