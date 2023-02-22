@@ -17,8 +17,8 @@
           <li class="nav-item m-1"><%= link_to user_path(current_user), method: :get, class: 'p-1 shadow-sm nav-link text-dark bg-light rounded-lg' do%><i class="fa-solid fa-circle-user fa-lg"></i>マイページ<% end %></li>
           <li class="nav-item m-1"><%= link_to destroy_user_session_path, method: :delete, class: 'p-1 shadow-sm nav-link bg-light rounded-lg text-dark' do%><i class="fa-solid fa-person-walking-dashed-line-arrow-right fa-lg"></i>ログアウト <% end %></li>
           <li class="nav-item d-md-none	m-1"><%= link_to posts_path, class:"p-1 shadow-sm nav-link text-dark bg-light rounded-lg" do%><i class="fa-solid fa-camera-retro fa-lg"></i>写真を探す<% end %></li>
-          <li class="nav-item d-md-none	m-1"><%= link_to map_posts_path, class:"p-1 shadow-sm nav-link text-dark bg-light rounded-lg" do %><i class="fa-solid fa-magnifying-glass-location fa-lg"></i>マップで探す<% end %></li>
-          <li class="nav-item d-md-none	m-1"><%= link_to new_post_path, class:"p-1 shadow-sm nav-link text-dark bg-light rounded-lg" do %><i class="fa-solid fa-feather fa-lg"></i>投稿する<% end %></li>
+          <li class="nav-item d-md-none	m-1" data-turbolinks="false"><%= link_to map_posts_path, class:"p-1 shadow-sm nav-link text-dark bg-light rounded-lg" do %><i class="fa-solid fa-magnifying-glass-location fa-lg"></i>マップで探す<% end %></li>
+          <li class="nav-item d-md-none	m-1" data-turbolinks="false"><%= link_to new_post_path, class:"p-1 shadow-sm nav-link text-dark bg-light rounded-lg" do %><i class="fa-solid fa-feather fa-lg"></i>投稿する<% end %></li>
         <!--管理者サインイン時-->
         <% elsif admin_signed_in? %>
         <!--投稿一覧へ（管理者用）-->
@@ -47,7 +47,7 @@
             <li class="nav-item	m-1"><%= link_to new_user_session_path, method: :get, class: 'p-1 shadow-sm nav-link text-dark bg-light rounded-lg' do %><i class="fa-solid fa-right-to-bracket fa-lg"></i>ログイン<% end %></li>
             <li class="nav-item	m-1"><%= link_to new_user_registration_path, method: :get, class: 'p-1 shadow-sm nav-link text-dark bg-light rounded-lg' do %><i class="fa-solid fa-person-circle-plus fa-lg"></i>新規登録<% end %></li>
             <li class="nav-item d-md-none	m-1"><%= link_to posts_path, class:"p-1 shadow-sm nav-link text-dark bg-light rounded-lg" do %><i class="fa-solid fa-camera-retro fa-lg"></i>写真を探す<% end %></li>
-            <li class="nav-item d-md-none	m-1"><%= link_to map_posts_path, class:"p-1 shadow-sm nav-link text-dark bg-light rounded-lg" do %><i class="fa-solid fa-magnifying-glass-location fa-lg"></i>マップで探す<% end %></li>
+            <li class="nav-item d-md-none	m-1" data-turbolinks="false"><%= link_to map_posts_path, class:"p-1 shadow-sm nav-link text-dark bg-light rounded-lg" do %><i class="fa-solid fa-magnifying-glass-location fa-lg"></i>マップで探す<% end %></li>
           <% end %>
         <% end %>
         </ul>
