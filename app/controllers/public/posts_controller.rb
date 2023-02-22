@@ -16,7 +16,6 @@ class Public::PostsController < ApplicationController
     gon.lat = @lat
     gon.lng = @lng
     @comments = @post.comments
-    user_id = @post.user_id
     if user_signed_in?
       @comment = current_user.comments.new
     end
@@ -66,7 +65,6 @@ class Public::PostsController < ApplicationController
     @lat = @post.map.latitude
     @lng = @post.map.longitude
     @map = @post.map
-    user_id = @post.user_id
     gon.lat = @lat
     gon.lng = @lng
     @tag_list=@post.tags.pluck(:name).join(' ')
@@ -107,7 +105,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to current_user_path
+    redirect_to user_path(current_user.id)
   end
   
   def map

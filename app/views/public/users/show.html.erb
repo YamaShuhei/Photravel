@@ -1,4 +1,4 @@
-<div class ="container my-5" >
+<div class ="container my-4" >
   <div>
   <div class="h5 d-inline-block midashi"><%= @user.name %></div>
   <% if user_signed_in? %>
@@ -10,29 +10,29 @@
   <% if @user.present? %>
   
   <!--ユーザー情報欄-->
-  <div id ="userMenu" class="p-2 bg-light mx-auto shadow-sm">
+  <div id ="userMenu" class="col-12 col-lg-8 p-2 bg-alice mx-auto shadow-sm mt-2">
     <div class="d-flex">
-      <div class="d-flex align-items-center text-center col-4 col-md-3">
+      <div class="d-flex justify-content-center align-items-center text-center px-0 col-4 col-md-3">
         <%= image_tag @user.get_profile_image(200,200),class:"rounded img-fluid" %>
       </div>
       <div class="col-8 col-md-9">
         <!--ユーザー名-->
-        <div class="row border-bottom">
-          <p class="col-3">ユーザー名</p>
-          <p class="col-9"><%= @user.name %></p>
+        <div class="border-bottom">
+          <p class="font-weight-bold">ユーザー名</p>
+          <p><%= @user.name %></p>
         </div>
         <!--投稿件数、フォローフォロワ-->
-        <div class="row border-bottom">
-          <div class="col-3">投稿件数</div>
-          <div class="col-9"><%= @user.posts.count %>件</div>
+        <div class="border-bottom">
+          <div class="font-weight-bold">投稿件数</div>
+          <div><%= @user.posts.count %>件</div>
           <!--<p class="col">フォロー<%= @user.followings.count %>人</p>-->
           <!--<p class="col">フォロワー<%= @user.followers.count %>人</p>-->
         </div>
         <!--自己紹介文（登録がなければその旨表示）-->
-        <div class="row">
+        <div class="">
           <% if @user.introduction.present? %>
-            <p class="col-3">自己紹介文</p>
-            <div class="col-9"><%= @user.introduction %></div>
+            <p class="font-weight-bold">自己紹介文</p>
+            <div><%= @user.introduction %></div>
           <% else %>
             <p>自己紹介文の登録がありません。</p>
           <% end %>
@@ -77,6 +77,7 @@
         </div>
         <% end %>
         </div>
+      <%= paginate @post %>
       <% else %>
       <div>投稿はありません。</div>
       <% end %>

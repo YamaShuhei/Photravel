@@ -1,34 +1,36 @@
 <div class="container mt-3">
   <div class="midashi">投稿編集画面</div>
   
-  <div class="col-9 mx-auto">
+  <div class="col-12 col-lg-9 mx-auto px-0">
     <%= form_with(model: @post,local: true) do |f| %>
       <div class="field p-3 border rounded">
-        <div class="form-group row field">
-          <%= f.label :title, "タイトル：", class:"col-2"%>
-          <%= f.text_field :title, class:"col-4 form-control" %>
+        <!--タイトル-->
+        <div class="form-group field">
+          <%= f.label :title, "タイトル："%>
+          <%= f.text_field :title, class:"col-11 col-lg-4 form-control" %>
         </div>
-        <div class="form-group row field">
-          <%= f.label :caption, "説明文：", class:"col-2" %>
-          <%= f.text_area :caption, class:"col-8 form-control" %>
+        <!--説明文-->
+        <div class="form-group field">
+          <%= f.label :caption, "説明文：" %>
+          <%= f.text_area :caption, class:"col-12 col-lg-8 form-control" %>
         </div>
         
-        
+        <!--マップ表示-->
           <div>マップ</div>
-          <div id="map" style="width:50vw;"></div>
+          <div id="map" style="width:100%;"></div>
           <%= f.fields_for :map, @post.map do |map| %>
             <%= map.hidden_field :latitude %>
             <%= map.hidden_field :longitude %>
-          <div class="form-group row field mt-4 ml-2">
-            <%= map.label :address, "住所：",class:"d-flex align-items-center" %>
-            <%= map.text_field :address, class:"w-50 form-control" %>
+        <!--住所編集欄-->
+          <div class="form-group field mt-4 ml-2">
+            <%= map.label :address, "住所",class:"d-flex align-items-center" %>
+            <%= map.text_field :address, class:"col-12 col-lg-9 form-control" %>
           </div>
           <% end %>
-        
-        
-        <div class="ml-4">
-        <%= f.label :name, "タグ：半角スペースで区切ると複数タグ登録)", class:"row" %>
-        <%= f.text_field :name,value: @tag_list,class:"form-control w-50 row ml-4"%>
+        <!--タグ-->
+        <div class="ml-2">
+        <%= f.label :name, "タグ：半角スペースで区切ると複数タグ登録)" %>
+        <%= f.text_field :name,value: @tag_list,class:"col-12 col-lg-6 form-control"%>
         </div>
       </div>
     
@@ -66,7 +68,8 @@ function initMap(){
    map = new google.maps.Map(document.getElementById('map'), {
    center: myLatLng,
    zoom: 13,
-   mapTypeControl: false
+   mapTypeControl: false,
+   streetViewControl: false
   });
      marker = new google.maps.Marker({
      position: myLatLng,

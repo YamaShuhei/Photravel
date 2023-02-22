@@ -11,6 +11,10 @@ body {
  background: aliceblue;
 }
 
+.bg-black{
+  background-color: #000;
+}
+
 .pagination {
   justify-content: center;
 }
@@ -142,8 +146,10 @@ body {
   border: solid;
 }
 
-.edit-form{
-  height: 450px;
+.new-postimg{
+  width: 100%;
+  object-fit: cover;
+  border: solid;
 }
 
 .profileMenu-back{
@@ -203,6 +209,25 @@ a.btn-border {
     transform: rotate(3deg);
 }
 
+.ranking .card{
+  min-height: 100px;
+}
+
+.ranking .post-title{
+    font-weight: bold;
+    margin-left: 10px;
+    @include media-breakpoint-down(sm) {
+      font-size: 14px;
+      margin-top: 9px;
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 18px;
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 24px;
+    }
+  }
+
 .rank-board1{
   font-size: 28px;
 }
@@ -212,6 +237,13 @@ a.btn-border {
   height: 50px;
   line-height: 50px;
   font-family: 'Poppins', sans-serif;
+  margin-left: 12px;
+  @include media-breakpoint-down(sm) {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;    
+    margin-top: 9px;
+  }
 }
 
 .rank1{
@@ -219,6 +251,9 @@ a.btn-border {
   box-shadow:  1px 1px 6px #e5e854;
   color: white;
   font-size: 36px;
+    @include media-breakpoint-down(md) {
+    font-size: 30px;
+  }
 }
 
 .rank-board2{
@@ -229,6 +264,9 @@ a.btn-border {
   box-shadow: 1px 1px 6px #7e7e7e;
   color: white;
   font-size: 36px;
+  @include media-breakpoint-down(md) {
+    font-size: 30px;
+  }
 }
 
 .rank-board3{
@@ -239,6 +277,9 @@ a.btn-border {
   box-shadow: 1px 1px 6px #ea8848;
   color: white;
   font-size: 36px;
+  @include media-breakpoint-down(md) {
+    font-size: 30px;
+  }
 }
 
 .rank-board4{
@@ -252,6 +293,12 @@ a.btn-border {
   box-shadow: 1px 1px 6px #3f9ece;
   color: white;
   font-size: 30px;
+  @include media-breakpoint-down(md) {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 25px;
+  }
 }
 
 .rank-board5{
@@ -266,15 +313,27 @@ a.btn-border {
   box-shadow: 1px 1px 6px #38a731;
   color: white;
   font-size: 30px;
+  @include media-breakpoint-down(md) {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;    
+    font-size: 25px;
+  }
 }
 
 #fa-rank{
   font-size: 30px;
+  @include media-breakpoint-down(md) {
+    font-size: 18px;
+  }
   color: rgb(251,116,116);
 }
 
 #fa-size{
   font-size: 32px;
+  @include media-breakpoint-down(md) {
+    font-size: 20px;
+  }
 }
 
 .card{
@@ -323,13 +382,11 @@ a.btn-border {
   width: 95%;
 }
 
-#userMenu{
-  background-color: #fdf8b8;
-  width: 80%;
-}
-
 #user-prof{
-  top: 18px;
+  top: 19px;
+  @include media-breakpoint-down(sm) {
+    top: 0;
+  }
 }
 
 .user-name{
@@ -378,8 +435,8 @@ a.btn-border {
 }
 
 #post-map{
-  width: 22vw;
-  height: 36vh;
+  width: 90%;
+  height: 34vh;
 }
 
 .ruled-line{
@@ -409,12 +466,21 @@ a.btn-border {
   font-size: 14px;
 }
 
+.comment-user{
+  line-height: 50px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
 .fav-btn{
     position: relative;
     left: 16%;
     border-radius: 21px;
     background: linear-gradient(145deg, #ffe4ff, #ffa6f0);
     box-shadow: 3px 3px 6px #dda1e6;
+    @include media-breakpoint-down(lg) {
+      left: 32% ;
+    }
 }
 
 .map-searchform{

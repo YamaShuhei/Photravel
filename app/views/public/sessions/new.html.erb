@@ -1,36 +1,36 @@
 <div class="container">
   <div class="mt-4 h1 midashi">ログイン</div>
   
-  <div class="col-7 mt-3 mx-auto">
+  <div class="col-12 col-md-9 mt-3 mx-auto">
     <%= form_with model: @user, url: user_session_path do |f| %>
     
-    <div class="border rounded p-3">
-      <div class="form-group row field pt-4">
-        <%= f.label :email, class:"col-3" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-6 form-control" %>
+    <!--メールアドレス-->
+    <div class="border rounded p-3 bg-alice">
+      <div class="form-group field pt-4">
+        <%= f.label :email, class:"col-10 col-md-6" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-12 col-md-7 form-control" %>
       </div>
-    
-      <div class="form-group row field">
-        <%= f.label :password, class:"col-3" %><br />
-        <%= f.password_field :password, autocomplete: "current-password", class:"col-3 form-control" %>
+    <!--パスワード-->
+      <div class="form-group field">
+        <%= f.label :password, class:"col-10 col-md-6" %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class:"col-6 col-md-5 form-control" %>
       </div>
-    
+    <!--次回以降省略-->
       <% if devise_mapping.rememberable? %>
-        <div class="form-group row field offset-3">
+        <div class="form-group field">
           <%= f.check_box :remember_me %>
           <%= f.label :remember_me %>
         </div>
       <% end %>
-    
+    <!--ログインボタン-->
       <div class="actions text-right">
         <%= f.submit "ログイン",class:"btn btn-primary" %>
       </div>
       <% end %>
     </div>
-    
-    <div class="d-inline-block border rounded col-8 mt-5 p-3 text-center float-right">
-      <span class="align-middle mr-3">アカウントをお持ちでない方は</span>
-      <%= render "public/shared/links" %>
+    <!--新規登録へ-->
+    <div class="d-inline-block border rounded mt-5 p-3 text-right float-right bg-alice">
+      <span class="align-middle mr-1">アカウントをお持ちでない方は<%= render "public/shared/links" %></span>
     </div>
     
   </div>

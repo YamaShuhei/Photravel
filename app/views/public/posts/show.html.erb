@@ -2,34 +2,36 @@
   <div class="text-center">
     
     <!--メニュー上部-->
-    <div class="row align-items-center justify-content-around">
+    <div class="row mx-0 align-items-center justify-content-around">
       <!--タイトル部分-->
-      <div class="col-8">
-        <div class="row">
-          <div class="text-left h3" id="post-title"><%= @post.title %></div>
+      <div class="col-12">
+        <div class="row align-items-center">
+          <div class="text-left h3 ml-2" id="post-title"><%= @post.title %></div>
       <!--ログインユーザーだった場合編集画面へのアクセスボタン表示-->
         <% if user_signed_in? %>
           <% if @post.user_id == current_user.id %>
-            <%= link_to "投稿編集", edit_post_path(@post.id), class:"ml-3 btn btn-secondary"%>
-            <%= link_to "投稿削除", post_path(@post.id), data: {confirm: "投稿を管理者削除しますか？"}, method: :delete, class:"ml-3 btn btn-danger"%>
+            <%= link_to "編集", edit_post_path(@post.id), class:"ml-3 btn btn-secondary"%>
+            <%= link_to "削除", post_path(@post.id), data: {confirm: "投稿を管理者削除しますか？"}, method: :delete, class:"ml-3 btn btn-danger"%>
           <% end %>
         <% end %>
-          </div>
-       </div>
-      <!--ユーザー情報-->
-      <div class="col-3" id="user-prof">
-        <%= link_to user_path(@post.user_id) do %>
+        <!--ユーザー情報-->
+          <div class="ml-auto text-right text-sm-left col-md-4 col-5" id="user-prof">
+          <%= link_to user_path(@post.user_id) do %>
           <%= image_tag @post.user.get_profile_image(50,50), class:"border rounded-circle mr-2" %>
-          <span class="user-name"><%= @post.user.name %></span>
-        <% end %>
+            <span class="d-none d-sm-inline user-name"><%= @post.user.name %></span>
+          <% end %>
+          </div>
+        </div>
       </div>
+      
+
     </div>
     
     <!--タグ-->
-    <div class="row font-weight-bold ml-4 mb-2">登録タグ：
-      <div class="col-3 text-left">
+    <div class="row mx-0 ml-2 font-weight-bold mb-2">登録タグ：
+      <div class="text-left">
         <% @post_tags.each do |tag| %>
-        <div class="d-inline-block mr-2 ml-0 p-1 pl-4 bg-dark rounded text-white tag">
+        <div class="d-inline-block ml-0 p-1 pl-4 bg-dark rounded text-white tag">
           <%= link_to search_posts_path(keyword: "#{tag.name}") do %>
           <span class="text-white"><%=tag.name%><%="(#{tag.posts.count})" %></span>
           <% end %>
@@ -56,50 +58,50 @@
 </div>
 
 <div class="container-fluid mt-4" id="post-detail">
-  <div class="row">
-  <div class="col-9">
-  <div class="shadow-sm rounded bg-white p-3">
-    
-    <div class="h3 mb-4">投稿詳細</div>
-    <div class=" row justify-content-center">
-      <div class="col-10">
-        <div id="post-caption">
-          <div class="d-inline-block h5">説明文</div>
-          <div class="p-1 w-100 border post-caption-val rounded"><%= @post.caption %></div>
-        </div>
-      </div>
-    </div>
-    <div class="ruled-line">　</div>
-    <!--コメントフォーム-->
-    <div class=" row justify-content-center">
-      <div class="col-10">
-        <div id="post-caption">
-        <% if user_signed_in? %>
-          <div class="d-inline-block h3 my-4">コメントする</div>
-          <!--コメントフォームテンプレート-->
-          <div class="mb-5">
-            <%= render partial: 'public/comments/comment_form', locals: {post: @post, comment: @comment} %>
+  <div class="row justify-content-around">
+    <div class="col-12 col-lg-8 bg-white shadow-sm rounded-lg mb-4 mx-0 ">
+      <div class="p-3">
+        
+        <div class="h3 mb-4">投稿詳細</div>
+        <div class=" row justify-content-center">
+          <div class="col-12 col-lg-10">
+            <div id="post-caption">
+              <div class="d-inline-block h5">説明文</div>
+              <div class="p-1 w-100 border post-caption-val rounded"><%= @post.caption %></div>
+            </div>
           </div>
-        <% else %>
-          <div class="d-inline-block h4 my-4">※コメントするにはログインして下さい。</div>
-        <% end %>
-        <!--コメント一覧-->
-        <div id="comments_area">
-          <%= render 'public/comments/comments', post: @post %>
         </div>
+        <div class="ruled-line">　</div>
+        <!--コメントフォーム-->
+        <div class=" row justify-content-center">
+          <div class="col-12">
+            <div id="post-caption">
+            <% if user_signed_in? %>
+              <div class="d-inline-block h3 my-4">コメントする</div>
+              <!--コメントフォームテンプレート-->
+              <div class="mb-5">
+                <%= render partial: 'public/comments/comment_form', locals: {post: @post, comment: @comment} %>
+              </div>
+            <% else %>
+              <div class="d-inline-block h4 my-4">※コメントするにはログインして下さい。</div>
+            <% end %>
+            <!--コメント一覧-->
+            <div id="comments_area">
+              <%= render 'public/comments/comments', post: @post %>
+            </div>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
     </div>
-    </div>
-    <div class="col-3 bg-white shadow-sm rounded" id="map-info">
+    <div class="col-12 col-lg-3 bg-white shadow-sm rounded-lg mb-4" id="map-info">
       <!--MAP表示-->
       <div class="row justify-content-center">
         <div class="col-11">
           <div class="h5 my-3">撮影地</div>
           <div class="h6"><%= @post.map.address %></div>
         </div>
-        <div class="d-flex justify-content-center">
+        <div class="row justify-content-center w-100">
           <div id="post-map"></div>
         </div>
       </div>

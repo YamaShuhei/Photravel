@@ -294,21 +294,25 @@
 		<!--ランキング表示-->
 		<div class="col-6 home-menu">
 			<div class="ranking">
-				<div class="h3 mt-3 ml-3 midashi">月間いいね数ランキング（<%= Date.today.month %>月）</div>
+				<div class="h5 mt-3 ml-3 midashi">月間いいね数<br>ランキング（<%= Date.today.month %>月）</div>
 					<% @month_favorite_ranks.each.with_index(1) do |post, i| %>
-							<div class="card mb-2">
+							<div class="card mb-2 overflow-hidden">
 								<div class="row d-flex align-items-center no-gutters rank-board<%=i%>">
 									<%= link_to post_path(post.id) do %>
-										<div class="col-md-4 text-center bg-dark">
+										<div class="col-md-4 text-center bg-black">
 										<%= image_tag post.post_image, class:"img-fluid",style:"max-height:120px" %>
 									<% end %>
 								</div>
 								<div class="col-md-8">
-									<div class="ml-3 d-inline-block rank-number rank<%= i%> text-center rounded-circle"><%= i %></div>
-									<%= link_to post_path(post.id),class:"text-dark" do %>
-										<span class="h5">「<%= post.title %>」</span>
-									<% end %>
-									<span class="float-right h4 mr-5" id="fa-rank"><i class="fa-solid fa-heart pr-2" id="fa-size"></i><%= post.favorites.count %></span>
+									<div class="row mx-0 align-items-center">
+										<div class="d-inline-block rank-number rank<%= i%> text-center rounded-circle"><%= i %></div>
+										<%= link_to post_path(post.id),class:"text-dark" do %>
+											<div class="post-title"><%= post.title %></div>
+										<% end %>
+									</div>
+									<div class="d-flex justify-content-end">
+										<div class="mr-3" id="fa-rank"><i class="fa-solid fa-heart pr-2" id="fa-size"></i><%= post.favorites.count %></div>
+									</div>
 								</div>
 								</div>
 							</div>

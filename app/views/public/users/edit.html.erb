@@ -5,37 +5,57 @@
     <%= form_with(model: @user,local: true) do |f| %>
 
     
-      <div class="edit-form border rounded p-3">
-        <div class="form-group row field">
-          <%= f.label :name, "ユーザー名", class:"col-3"%>
-          <%= f.text_field :name, class:"col-4 form-control" %>
+      <div class="col-12 col-lg-8 edit-form border rounded p-3 mx-auto bg-alice shadow-sm">
+        <div class="form-group field">
+          <%= f.label :name, "ユーザー名"%>
+          <%= f.text_field :name, class:"col-8 col-lg-4 form-control" %>
         </div>
         
-        <div class="form-group row field">
-        <%= f.label :email, "メールアドレス", class:"col-3" %>
-        <%= f.text_field :email, class:"col-6 form-control" %>
+        <div class="form-group field">
+        <%= f.label :email, "メールアドレス"%>
+        <%= f.text_field :email, class:"col-12 col-lg-8 form-control" %>
         </div>
         
-        <div class="form-group row field">
-          <%= f.label :introduction, "自己紹介文", class:"col-3" %>
-          <%= f.text_area :introduction, class:"col-6 form-control" %>
+        <div class="form-group field">
+          <%= f.label :introduction, "自己紹介文"%>
+          <%= f.text_area :introduction, class:"col-12 col-lg-10 form-control" %>
         </div>
         
         
-        <div class="form-group row field">
-          <%= f.label :profile_image, "プロフィール画像", class:"col-3" %>
+        <div class="form-group field">
+          <%= f.label :profile_image, "プロフィール画像"%>
           <div><%= f.file_field :profile_image, accept: "image/*" %></div>
         </div>
-        <div class="d-flex justify-content-center" id="img-prev"></div>
-      </div>
+        <div class="text-center" id="img-prev"></div>
+      
     
-    　<div class="mt-2 float-right ">
+    　<div class="mt-2 text-right">
         <%= f.submit "更新する",class:"btn btn-lg btn-success" %>
         <%= link_to "戻る", user_path(@user.id), class:"btn btn-lg btn-primary"%>
       </div>
-    
+      </div>
     <% end %>
   </div>
-  
-  
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const createImageHTML = (blob) => {  
+      const imageElement = document.getElementById('img-prev'); 
+      const blobImage = document.createElement('img'); 
+      blobImage.setAttribute('class', 'new-img');
+      blobImage.setAttribute('src', blob); 
+      imageElement.appendChild(blobImage);
+    }; 
+    document.getElementById('user_profile_image').addEventListener('change', (e) =>{
+      const imageContent = document.querySelector('img'); 
+      if (imageContent){ 
+        imageContent.remove(); 
+      }
+      
+      const file = e.target.files[0];  
+      const blob = window.URL.createObjectURL(file); 
+      createImageHTML(blob); 
+    });
+  });
+</script>

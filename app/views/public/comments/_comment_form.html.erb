@@ -2,6 +2,6 @@
   <div id="error-comments">
     <%= render 'layouts/error_messages', model: f.object %>
   </div>
-  <%= f.text_area :comment, placeholder: "コメントはこちらに入力して下さい（100文字以内）", class:"w-100", rows:"3" %>
-  <%= f.submit "　送信　", class:"btn btn-sm btn-success float-right" %>
+  <%= f.text_area :comment, placeholder: "コメントはこちらに入力して下さい（100文字以内）", class:"w-100 form-control", rows:"3" %>
+  <%= f.submit "コメントする", class:"btn btn-sm btn-success float-right mt-2" %>
 <% end %>

@@ -2,51 +2,81 @@
     <!--投稿画面-->
     <%= form_with(model: @post,local: true,multipart: true) do |f| %>
     <div class="ml-2 mt-2 d-inline-block h3 midashi">写真投稿</div>
-    <div class="w-50 bg-white border rounded shadow-sm p-2">
+    <div class="col-12 col-lg-10 bg-alice border rounded shadow-sm p-3 mx-auto">
       <div class="align-middle" >
         <%= render 'layouts/error_messages', model: f.object %>
       </div>
-      <div class="">
+      <!--タイトル記入フォーム-->
+      <div class="form-group field">
         <%= f.label :title, "タイトル" %>
-        <%= f.text_field :title, placeholder:"撮影地を入れて下さい" %>
+        <%= f.text_field :title, placeholder:"撮影地入れたタイトルを入力しましょう！",class:"col-12 col-lg-6 form-control" %>
       </div>
-      <div class="">
+      <!--説明文記入フォーム-->
+      <div class="form-group field">
         <%= f.label :caption, "説明文" %>
-        <%= f.text_area :caption, placeholder:"説明文を記入しましょう！" %>
+        <%= f.text_area :caption, placeholder:"説明文を記入しましょう！",class:"col-12 col-lg-8 form-control" %>
       </div>
-      <div class="">
-        <%= f.label :post_image, "投稿写真" %>
-        <%= f.file_field :post_image, accept: "image/*" %>
-      </div>
-      <div>
+      <!--タグ記入フォーム-->
+      <div class="form-group field mt-3">
         <%= f.label :name, "タグ（半角スペースで区切ると複数のタグを登録できます" %>
-        <%= f.text_field :name, placeholder:"例：自然 動物　など..." %>
+        <%= f.text_field :name, placeholder:"例：自然 動物　など...", class:"col-12 col-lg-6 form-control" %>
+      </div>
+      <!--投稿写真選択フォーム-->
+      <div class="form-group field">
+        <%= f.label :post_image, "投稿写真" %>
+        <%= f.file_field :post_image, accept: "image/*", class:"form-control-file" %>
+      </div>
+      <!--プレビュー表示用-->
+      <div class="text-center" id="img-prev"></div>
+      <!--地図設定画面（モーダル）表示用-->
+      <div class="text-right mt-3">
+        <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+          撮影地を設定する
+        </button>
       </div>
     </div>
-
-    <!--マップ表示-->
-
-    <div class="mt-3 p-2 input-field border rounded-top w-50" id="search-form">
-      <label class="font-weight-bold mx-1">場所検索</label>
-      <input type="text" id="address" placeholder="地名・住所を入力">
-      <a class="btn btn-sm btn-success mx-1" onclick="codeAddress()">地図検索</a>
-      <a id="del" class="btn btn-sm btn-warning marker-delete right mx-1" onclick="deleteMarker()">
-      <i class="fas fa-map-marker-alt fas-2x mr-1" style="color:red"></i>マーカー削除
-      </a>
-    </div>
     
-      <div id="map"></div>
-      <%= f.fields_for :map, @post.build_map do |map| %>
-        <%= map.hidden_field :latitude %>
-        <%= map.hidden_field :longitude %>
-        <%= map.hidden_field :address %>
-      <% end %>
-    <div class="mt-3">
-    <%= f.submit "投稿する" %>
+    <!--撮影地登録用モーダル-->
+    <div class="modal fade px-0" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+          <!--モーダルのヘッダー-->
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalCenterTitle">撮影地設定</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--モーダル本体-->
+          <div class="modal-body">
+            <!--地図検索用-->
+            <div class="col-12 mt-3 p-2 input-field border rounded-top" id="search-form">
+              <label class="font-weight-bold mx-1"><i class="fa-solid fa-map-location-dot fa-2x "></i> 場所検索(地図タップor住所入力)</label>
+              <input class="col-12 col-lg-3" type="text" id="address" placeholder="地名・住所を入力">
+              <a class="btn btn-success mx-1 my-1" onclick="codeAddress()">地図を検索</a>
+              <a id="del" class="btn btn-warning marker-delete right mx-1 my-1" onclick="deleteMarker()">
+              <i class="fas fa-map-marker-alt fas-2x mr-1" style="color:red"></i>マーカー削除
+              </a>
+            </div>
+            <!--マップ本体-->
+            <div id="map"></div>
+              <%= f.fields_for :map, @post.build_map do |map| %>
+                <%= map.hidden_field :latitude %>
+                <%= map.hidden_field :longitude %>
+                <%= map.hidden_field :address %>
+              <% end %>
+          </div>
+          <!--モーダルのフッター-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+            <div>
+              <%= f.submit "投稿する",class:"btn btn-success" %>
+            </div>
+          </div>
+        <% end %>
+        </div>
+      </div>
     </div>
-    <% end %>
-    
-
   </div>
 
 
@@ -59,8 +89,6 @@ var map_lng
 var map_add
 var address
 var fixaddress
-
-
 
 function initMap(){
   
@@ -91,8 +119,6 @@ function initMap(){
     map_lng.value = event.latLng.lng();
     console.log(map_lat.value,map_lng.value);
     
-
-    
     let latLngInput = new google.maps.LatLng(map_lat.value,  map_lng.value);
     // マーカークリック時に住所取得
     geocoder = new google.maps.Geocoder()
@@ -109,8 +135,6 @@ function initMap(){
       map_lng.value = map_result.lng();
       marker.setPosition(new google.maps.LatLng(map_result.lat(), map_result.lng()));
       marker.setMap(map);
-      console.log(map_lat.value,map_lng.value);
-      console.log(fixaddress);
     } else {
       alert('該当する結果がありませんでした');
       initMap();
@@ -156,5 +180,25 @@ function codeAddress(){
   });   
 }
 
+// プレビュー画像表示用
+  document.addEventListener('DOMContentLoaded', () => {
+      const createImageHTML = (blob) => {  
+      const imageElement = document.getElementById('img-prev'); 
+      const blobImage = document.createElement('img'); 
+      blobImage.setAttribute('class', 'new-postimg');
+      blobImage.setAttribute('src', blob); 
+      imageElement.appendChild(blobImage);
+    }; 
+    document.getElementById('post_post_image').addEventListener('change', (e) =>{
+      const imageContent = document.querySelector('img'); 
+      if (imageContent){ 
+        imageContent.remove(); 
+      }
+      
+      const file = e.target.files[0];  
+      const blob = window.URL.createObjectURL(file); 
+      createImageHTML(blob); 
+    });
+  });
 
 </script>
