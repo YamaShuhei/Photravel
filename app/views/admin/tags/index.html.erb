@@ -1,0 +1,30 @@
+<div class="container">
+  <table class="col-6 table table-hover border">
+    <thread>
+      <tr class="bg-light">
+        <th scope="col" class="text-center">タグID</th>
+        <th scope="col">タグ名</th>
+        <th scope="col"></th>
+      </tr>
+    </thread>
+    <tbody class="tag-list">
+    <% if @tags.present? %>
+      <% @tags.each do |tag| %>  
+      <tr>
+        <td scope="row"><%= tag.id %></td>
+        <td class="align-middle"><%= tag.name %></td>
+        <td class="align-middle"><%= link_to "削除", admin_tag_path(tag.id), method: :delete, data: {confirm: "タグを削除しますか？"}  %></td>
+      </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td>タグの登録がありません。</td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div class="row justify-content-center">
+    <%= paginate @tags %>
+  </div>
+  
+</div>

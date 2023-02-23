@@ -4,11 +4,15 @@ Rails.application.routes.draw do
   devise_for :admin,skip:[:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
   }
+
   ##ユーザー用
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
 # ユーザー側のルーティング設定
@@ -33,7 +37,8 @@ namespace :admin do
   resources :posts, only:[:show, :destroy] do
     resources :comments, only:[:destroy]
   end
-  resources :users, only:[:show]
+  resources :users, only:[:show, :index, :destroy]
+  resources :tags, only:[:index, :destroy]
 
 end
 

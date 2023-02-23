@@ -22,6 +22,16 @@ class User < ApplicationRecord
     has_many :followings, through: :relationships, source: :followed
     has_many :followers, through: :reverse_of_relationships, source: :follower
     
+  # ゲストサインイン用 
+  def self.guest
+    find_or_create_by!(email: 'test_user@test.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.password_confirmation = user.password
+      user.name = 'テストユーザー'
+      user.introduction = "テストユーザーの自己紹介文です"
+    end
+  end
+    
   #プロフィール画像が見つからない場合はnoimageを表示する
   #プロフィール画像を任意の画像サイズで出力出来るように
   def get_profile_image(width,height)

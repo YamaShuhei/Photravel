@@ -1,0 +1,41 @@
+<div class="container">
+  <table class="table table-hover border">
+    <thread>
+      <tr class="bg-light">
+        <th scope="col" class="text-center">プロフィール画像</th>
+        <th scope="col">ユーザ名</th>
+        <th scope="col">自己紹介文</th>
+        <th scope="col"></th>
+      </tr>
+    </thread>
+    <tbody class="user-list">
+    <% if @users.present? %>
+      <% @users.each do |user| %>  
+      <tr>
+        <td scope="row">
+          <%= link_to admin_user_path(user.id), class:"d-flex justify-content-center" do %>
+            <%= image_tag user.get_profile_image(50,50) %>
+          <% end %>
+        </td>
+        
+        <td class="align-middle">
+        <%= link_to admin_user_path(user.id) do %>
+          <%= user.name %>
+        <% end %>
+        </td>
+        <td class="align-middle text-truncate"><%= user.introduction %></td>
+        <td class="align-middle"><%= link_to "削除", admin_user_path(user.id), method: :delete, data: {confirm: "ユーザーを削除しますか？"}  %></td>
+      </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td>ユーザー登録がありません。</td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div class="row justify-content-center">
+    <%= paginate @users %>
+  </div>
+  
+</div>

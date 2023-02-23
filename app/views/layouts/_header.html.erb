@@ -22,16 +22,13 @@
         <!--管理者サインイン時-->
         <% elsif admin_signed_in? %>
         <!--投稿一覧へ（管理者用）-->
-          <li class="nav-item">
-            <%= link_to admin_root_path, class: 'd-inline-block nav-link text-dark' do %>
-              <i class="fa-solid fa-images"></i> 投稿一覧(管理者用)
-            <% end %>
-          </li>
+          <li class="nav-item c"><%= link_to admin_root_path, class: 'd-inline-block nav-link text-dark' do %><i class="fa-solid fa-images"></i> 投稿一覧<% end %></li>
+        <!--登録タグ一覧へ（管理者用）-->
+          <li class="nav-item c"><%= link_to admin_tags_path, class: 'd-inline-block nav-link text-dark' do %><i class="fa-solid fa-tags"></i> タグ一覧<% end %></li>
+        <!--ユーザー一覧へ（管理者用）-->
+          <li class="nav-item"><%= link_to admin_users_path, class: 'd-inline-block nav-link text-dark' do %><i class="fa-solid fa-users"></i> ユーザ一覧<% end %></li>
           <!--ログアウト（管理者用）-->
-          <li class="nav-item">
-            <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
-            <i class="fa-solid fa-right-from-bracket"></i>管理者ログアウト
-            <% end %>
+          <li class="nav-item"><%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %><i class="fa-solid fa-right-from-bracket"></i>管理者ログアウト<% end %>
           </li>
         <% else %>
           <!--サインアウト中かつURLに/adminが含まれる場合-->
@@ -44,6 +41,7 @@
             </li>
           <!--URLにadminが含まれない場合-->
           <% else %>
+            <li class="nav-item	m-1"><%= link_to users_guest_sign_in_path, method: :post, class: 'p-1 shadow-sm nav-link text-dark bg-light rounded-lg' do %><i class="fa-solid fa-kiwi-bird fa-lg"></i>ゲストログイン<% end %></li>
             <li class="nav-item	m-1"><%= link_to new_user_session_path, method: :get, class: 'p-1 shadow-sm nav-link text-dark bg-light rounded-lg' do %><i class="fa-solid fa-right-to-bracket fa-lg"></i>ログイン<% end %></li>
             <li class="nav-item	m-1"><%= link_to new_user_registration_path, method: :get, class: 'p-1 shadow-sm nav-link text-dark bg-light rounded-lg' do %><i class="fa-solid fa-person-circle-plus fa-lg"></i>新規登録<% end %></li>
             <li class="nav-item d-md-none	m-1"><%= link_to posts_path, class:"p-1 shadow-sm nav-link text-dark bg-light rounded-lg" do %><i class="fa-solid fa-camera-retro fa-lg"></i>写真を探す<% end %></li>

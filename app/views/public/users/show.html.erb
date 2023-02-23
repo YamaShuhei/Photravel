@@ -3,7 +3,9 @@
   <div class="h5 d-inline-block midashi"><%= @user.name %></div>
   <% if user_signed_in? %>
     <% if current_user.id == @user.id %>
-      <%= link_to "登録情報の変更", edit_user_path(@user.id), class:"btn btn-success" %>
+      <% unless current_user.email == "test_user@test.com" %>
+        <%= link_to "登録情報の変更", edit_user_path(@user.id), class:"btn btn-success" %>
+      <% end %>
     <% end %>
     </div>
   <% end %>
