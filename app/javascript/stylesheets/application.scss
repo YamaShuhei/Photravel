@@ -429,6 +429,17 @@ a.btn-border {
   background-color: #81caff;
 }
 
+.search-result{
+  @include media-breakpoint-up(sm) {
+    .card-text:nth-child(2){
+    font-size: 14px;
+    }
+      .card-text:nth-child(3){
+    font-size: 13px;
+    }
+  }
+  
+}
 .post-caption-val{
   min-height: 110px;
   height: auto ;

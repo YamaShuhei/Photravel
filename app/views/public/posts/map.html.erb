@@ -65,7 +65,11 @@ function initMap(){
     marker[i] = new google.maps.Marker({
       position: markerLatLng,
       animation: google.maps.Animation.DROP,
-      map: map
+      map: map,
+      icon:{
+        url:"<%= asset_url "map_marker.png" %>",
+        scaledSize: new google.maps.Size(32,40)
+      }
     });
     
     // 各地点の吹き出しを作成
