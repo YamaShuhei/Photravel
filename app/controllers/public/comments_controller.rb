@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Public::CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
-  
+
   def create
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
@@ -19,12 +21,9 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     render :post_comments
   end
-  
-  private
-  
-  
-  def comment_params
-    params.require(:comment).permit(:comment)
-  end
-end
 
+  private
+    def comment_params
+      params.require(:comment).permit(:comment)
+    end
+end
