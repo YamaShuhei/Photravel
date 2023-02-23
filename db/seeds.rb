@@ -14,9 +14,3 @@ Admin.create!(
    password: "testtest"
  )
  
- User.create!(
-    email: "test_user@test.com",
-    password: SecureRandom.urlsafe_base64,
-    name: "ゲストユーザー",
-    introduction: "ゲストユーザーの自己紹介文です"
-    )

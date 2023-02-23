@@ -22,11 +22,7 @@ class Post < ApplicationRecord
 
   # プロフィール画像を任意の画像サイズで出力出来るように
   def get_post_image(width, height)
-    unless post_image.attached?
-      file_path = Rails.root.join("app/assets/images/no_image.jpg")
-      post_image.attach(io: File.open(file_path), filename: "no-postimage.jpg", content_type: "image/jpeg")
-    end
-    post_image.variant(resize_to_limit: [width, height]).processed
+    post_image.variant(resize_to_limit:[width,height]).processed
   end
 
   # タグ保存用
