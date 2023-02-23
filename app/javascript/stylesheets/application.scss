@@ -1,10 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Poppins:ital,wght@1,900&display=swap';
 
-html {
-  -webkit-text-size-adjust: 100%;
-}
-
 body {
   font-family: 'Kosugi Maru', sans-serif;
   background-color: #f8f9fa;
@@ -427,6 +423,7 @@ a.btn-border {
 .tag{
   position: relative;
   margin-left: 30px;
+  font-size: 12px;
 }
 
 
