@@ -1,7 +1,7 @@
 <div class="container-fluid map-container">
 	<div class="pt-3 pb-4" style="z-index:-2;">
 		<div class="container">
-		  <div class="h1 mt-2 midashi shadow">
+		  <div class="h1 mt-2 text-nowrap midashi shadow">
 		    都道府県から写真を探す
 		  </div>
 		</div>
@@ -294,7 +294,7 @@
 		<!--ランキング表示-->
 		<div class="col-6 home-menu">
 			<div class="ranking">
-				<div class="h5 mt-3 ml-3 midashi">月間いいね数<br>ランキング（<%= Date.today.month %>月）</div>
+				<div class="h6 mt-3 ml-3 midashi">月間いいね数<br>ランキング（<%= Date.today.month %>月）</div>
 					<% @month_favorite_ranks.each.with_index(1) do |post, i| %>
 							<div class="card mb-2 overflow-hidden">
 								<div class="row d-flex align-items-center no-gutters rank-board<%=i%>">

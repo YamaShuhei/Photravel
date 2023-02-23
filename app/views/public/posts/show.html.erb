@@ -7,13 +7,7 @@
       <div class="col-12">
         <div class="row align-items-center">
           <div class="text-left h3 ml-2" id="post-title"><%= @post.title %></div>
-      <!--ログインユーザーだった場合編集画面へのアクセスボタン表示-->
-        <% if user_signed_in? %>
-          <% if @post.user_id == current_user.id %>
-            <%= link_to "編集", edit_post_path(@post.id), class:"ml-3 btn btn-secondary"%>
-            <%= link_to "削除", post_path(@post.id), data: {confirm: "投稿を管理者削除しますか？"}, method: :delete, class:"ml-3 btn btn-danger"%>
-          <% end %>
-        <% end %>
+
         <!--ユーザー情報-->
           <div class="ml-auto text-right text-sm-left col-md-4 col-5" id="user-prof">
           <%= link_to user_path(@post.user_id) do %>
@@ -48,12 +42,11 @@
         <% end %>
       </div>
     </div>
-    <div>
+
       <!--いいねボタン-->
       <div id="favorite_<%= @post.id%>" class="text-nowrap">
         <%= render partial: "public/favorites/favorite", locals: {post: @post} %>
       </div>
-    </div>
   </div>
 </div>
 
@@ -62,7 +55,18 @@
     <div class="col-12 col-lg-8 bg-white shadow-sm rounded-lg mb-4 mx-0 ">
       <div class="p-3">
         
-        <div class="h3 mb-4">投稿詳細</div>
+        <div class="h3 mb-4">
+          投稿詳細
+          <!--ログインユーザーだった場合編集画面へのアクセス/削除ボタン表示-->
+        <% if user_signed_in? %>
+          <% if @post.user_id == current_user.id %>
+            <%= link_to "編集", edit_post_path(@post.id), class:"btn btn-secondary"%>
+            <%= link_to "投稿削除", post_path(@post.id), data: {confirm: "投稿を管理者削除しますか？"}, method: :delete, class:"btn btn-danger"%>
+          <% end %>
+        <% end %>
+          
+          </div>
+        
         <div class=" row justify-content-center">
           <div class="col-12 col-lg-10">
             <div id="post-caption">
