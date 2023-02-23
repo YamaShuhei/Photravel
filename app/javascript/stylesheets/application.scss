@@ -7,8 +7,12 @@ body {
 }
 
 input,textarea {
-  appearance: none;
   -webkit-appearance: none;
+}
+
+input[type="submit"] {
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 
 .bg-alice{
@@ -459,6 +463,7 @@ a.btn-border {
   position: relative;
   max-width: 211px;	
   margin-bottom: 20px;
+  -webkit-appearance: none;
   
   a{
     border: 2px solid;
@@ -480,7 +485,8 @@ a.btn-border {
   top: 0; 
   border-radius: 16px 0 0 16px;
   outline: 0;
-  background:#fff;	
+  background:#fff;
+  -webkit-appearance: none;
 }
 
 #sbtn2{
@@ -493,6 +499,7 @@ a.btn-border {
   color:#666;
   border: none;
   font-size: 20px;
+  -webkit-appearance: none;
 }
 
 .tag{
