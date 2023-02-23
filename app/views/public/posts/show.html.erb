@@ -31,9 +31,9 @@
     <div class="row mx-0 ml-2 font-weight-bold mb-2">登録タグ：
       <div class="text-left">
         <% @post_tags.each do |tag| %>
-        <div class="d-inline-block ml-0 pl-4 pr-5 bg-dark rounded text-white tag">
+        <div class="d-inline-block ml-0 pl-4 pr-2 bg-dark rounded text-white tag">
           <%= link_to search_posts_path(keyword: "#{tag.name}") do %>
-          <span class="text-white"><%=tag.name%><%="(#{tag.posts.count})" %></span>
+          <span class="text-nowrap text-white"><%=tag.name%><%="(#{tag.posts.count})" %></span>
           <% end %>
         </div>
         <% end %>
