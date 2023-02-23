@@ -460,7 +460,7 @@ a.btn-border {
 }
 // マップページ検索フォーム用
 #form2{
-  max-width: 211px;	
+  width: 211px;	
   margin-bottom: 20px;
   -webkit-appearance: none;
   
@@ -480,10 +480,12 @@ a.btn-border {
 
 #address{
   height: 50px;
-  padding: 0 10px;
+  padding: 0 10px; 
+  position: absolute; 
   left: 0;
   top: 0; 
   border-radius: 16px 0 0 16px;
+  outline: 0;
   background:#fff;
   -webkit-appearance: none;
 }
