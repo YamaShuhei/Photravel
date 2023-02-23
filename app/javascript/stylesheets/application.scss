@@ -213,8 +213,26 @@ a.btn-border {
     transform: rotate(3deg);
 }
 
+.home-menu:first-child .midashi{
+  @include media-breakpoint-down(sm) {
+    font-size: 14px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.ranking img{
+  max-height: 120px;
+  @include media-breakpoint-down(sm) {
+    max-height: 180px;
+  }
+}
+
 .ranking .card{
   min-height: 100px;
+    @include media-breakpoint-down(sm) {
+    height: 260px;
+  }
 }
 
 .ranking .post-title{
