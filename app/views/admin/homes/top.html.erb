@@ -15,7 +15,7 @@
       <tr>
         <td scope="row">
           <%= link_to admin_post_path(post.id), class:"d-flex justify-content-center" do %>
-            <%= image_tag post.get_post_image(75,75) %>
+            <%= image_tag post.post_image, class:"img-fluid", style:"max-height:100px;" %>
           <% end %>
         </td>
         

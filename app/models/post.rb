@@ -19,7 +19,7 @@ class Post < ApplicationRecord
 
 
   # プロフィール画像を任意の画像サイズで出力出来るように
-  def get_post_image(width, height)
+  def get_post_image(width,height)
     post_image.variant(resize_to_limit:[width,height]).processed
   end
 
