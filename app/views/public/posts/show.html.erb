@@ -33,7 +33,7 @@
         <% @post_tags.each do |tag| %>
         <div class="d-inline-block ml-0 pl-4 pr-2 bg-dark rounded text-white tag">
           <%= link_to search_posts_path(keyword: "#{tag.name}") do %>
-          <span class="text-nowrap text-white"><%=tag.name%><%="(#{tag.posts.count})" %></span>
+            <span class="text-nowrap text-white"><%=tag.name%><%="(#{tag.posts.count})" %></span>
           <% end %>
         </div>
         <% end %>
@@ -50,7 +50,7 @@
     </div>
     <div>
       <!--いいねボタン-->
-      <div id="favorite_<%= @post.id%>">
+      <div id="favorite_<%= @post.id%>" class="text-nowrap">
         <%= render partial: "public/favorites/favorite", locals: {post: @post} %>
       </div>
     </div>
