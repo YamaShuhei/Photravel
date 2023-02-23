@@ -3,11 +3,10 @@
   <!--マップ-->
   <div id="map" style="height:85vh;" class="position-absolute" data-turbolinks='false'></div>
   <!--検索フォーム-->
-  <div class="d-inline-block bg-light border p-2 position-absolute map-searchform">
-    <label class="font-weight-bold mx-1">場所検索</label>
+  <form class="d-inline-block p-2 position-absolute map-searchform" id="form2">
     <input type="text" id="address" placeholder="地名・住所を入力">
-    <a class="btn btn-sm btn-success mx-1" onclick="codeAddress()">地図検索</a>  
-  </div>
+    <a id="sbtn2" onclick="codeAddress()"><i class="fas fa-search"></i></a>  
+  </form>
 </div>
 
 

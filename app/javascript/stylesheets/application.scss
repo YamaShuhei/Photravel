@@ -453,6 +453,46 @@ a.btn-border {
 #map-info{
   height: 52vh;
 }
+// マップページ検索フォーム用
+#form2{
+  position:relative;
+  max-width:300px;	
+  margin-bottom:20px;
+  
+  a{
+    border: 2px solid;
+    width: 45px;
+  }
+  
+  i{
+    position: absolute;
+    left: 10px;
+    top: 13px;
+  }
+}
+
+#address{
+  height: 50px;
+  padding: 0 10px; 
+  position: absolute; 
+  left: 0;
+  top: 0; 
+  border-radius: 16px 0 0 16px;
+  outline: 0;
+  background:#fff;	
+}
+
+#sbtn2{
+  height: 50px;
+  position: absolute; 
+  left: 202px;
+  top: 0;
+  border-radius: 0 15px 15px 0;
+  background-color:#fff;
+  color:#666;
+  border: none;
+  font-size: 20px;
+}
 
 .tag{
   position: relative;
