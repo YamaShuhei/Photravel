@@ -322,7 +322,7 @@
 		<!--最新投稿表示-->
 		<div class="col-12 col-md-6 home-menu ">
 			<div class="h3 mt-3 midashi">最新の投稿</div>
-		  <div class="card-columns">
+		  <div class="card-columns overflow-hidden">
 		    <% @posts.each do |post| %>
 		    <div class="card">
 		    <%= link_to post_path(post.id) do %>

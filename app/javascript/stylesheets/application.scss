@@ -36,17 +36,25 @@ body {
 }
 
 .home-menu .card-columns{
-  @include media-breakpoint-only(sm) {
+  @include media-breakpoint-down(sm) {
     column-count: 2;
+    max-height: none;
   }
-  @include media-breakpoint-only(md) {
+  @include media-breakpoint-down(md) {
     column-count: 2;
+    max-height: none;
   }
-  @include media-breakpoint-only(lg) {
+  @include media-breakpoint-up(md) {
+    column-count: 2;
+    max-height: 700px;
+  }
+  @include media-breakpoint-up(lg) {
     column-count: 3;
+    max-height: 700px;
   }
-    @include media-breakpoint-only(xl) {
+  @include media-breakpoint-up(xl) {
     column-count: 4;
+    max-height: 700px;
   }
 
 }
