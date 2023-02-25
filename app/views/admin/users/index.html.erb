@@ -24,7 +24,11 @@
         <% end %>
         </td>
         <td class="align-middle text-truncate"><%= user.introduction %></td>
-        <td class="align-middle"><%= link_to "削除", admin_user_path(user.id), method: :delete, data: {confirm: "ユーザーを削除しますか？"}  %></td>
+        <% if user.email != "test_user@test.com" %>
+          <td class="align-middle"><%= link_to "削除", admin_user_path(user.id), method: :delete, data: {confirm: "ユーザーを削除しますか？"}  %></td>
+        <% else %>
+          <td></td>
+        <% end %>
       </tr>
       <% end %>
     <% else %>

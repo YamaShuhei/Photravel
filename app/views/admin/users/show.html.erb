@@ -1,7 +1,9 @@
 <div class ="container my-5" >
   <div>
     <div class="h5 d-inline-block midashi"><%= @user.name %></div>
-    <%= link_to "ユーザーの削除", admin_user_path(@user.id), method: :delete, data: {confirm: "ユーザーを管理者権限で削除しますか？"},class:"btn btn-danger"  %>
+    <% if @user.email != "test_user@test.com" %>
+      <%= link_to "ユーザーの削除", admin_user_path(@user.id), method: :delete, data: {confirm: "ユーザーを管理者権限で削除しますか？"},class:"btn btn-danger"  %>
+    <% end %>
   </div>
   <% if @user.present? %>
   
