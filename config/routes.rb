@@ -30,6 +30,8 @@ Rails.application.routes.draw do
       end
     end
     resources :users, only: [:show, :edit, :update]
+    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
   end
 
   # 管理者側のルーティング設定
@@ -39,6 +41,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:destroy]
     end
     resources :users, only: [:show, :index, :destroy]
+    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     resources :tags, only: [:index, :destroy]
   end
 end

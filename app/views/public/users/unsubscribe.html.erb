@@ -1,0 +1,17 @@
+<div class="container mt-5">
+  <div class="midashi">退会手続き</div>
+   <div class="mt-5 py-3 bg-alice col-12 col-lg-9 border mx-auto rounded-lg shadow-sm text-center" id="withdrawal_form">
+     <p>
+      退会手続きをされますと、<br>
+      <span class="font-weight-bold">全てのサービスがご利用いただけなくなります。</span><br>
+      再度ご利用をいただく場合には、<br>
+      新規登録のお手続きが必要になります。<br>
+      本当に退会してよろしいですか？
+     </p>
+     <div class="mt-3 row justify-content-center">
+      <%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" },class:"mr-3 btn btn-danger" %>
+      <%= link_to "退会しない", user_path(current_user),class:"ml-3 btn btn-secondary" %>
+     </div>
+     
+    </div>
+</div>

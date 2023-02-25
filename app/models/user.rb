@@ -31,6 +31,16 @@ class User < ApplicationRecord
       user.introduction = "テストユーザーの自己紹介文です"
     end
   end
+  
+  # ユーザステータスの日本語化
+  def user_status
+    if is_deleted == false
+      is_deleted = "入会中"
+    else
+      is_deleted = "退会"
+    end
+  end
+  
 
   # プロフィール画像が見つからない場合はnoimageを表示する
   # プロフィール画像を任意の画像サイズで出力出来るように
@@ -45,5 +55,10 @@ class User < ApplicationRecord
   # いいねしているかチェック
   def favorited_by?(post_id)
     favorites.where(post_id: post_id).exists?
+  end
+  
+    # is_deletedがfalseならtrueを返す
+  def active_for_authentication?
+    super && (is_deleted == false)
   end
 end

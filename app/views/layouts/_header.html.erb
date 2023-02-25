@@ -12,6 +12,7 @@
       <div class="collapse navbar-collapse justify-content-end navbarSupportedContent">
         <ul class="navbar-nav float-right">
         <!--ヘッダー-->
+        
         <!--ユーザーサインイン時-->
         <% if user_signed_in? %>
           <li class="nav-item m-1"><%= link_to user_path(current_user), method: :get, class: 'p-1 shadow-sm nav-link text-dark bg-light rounded-lg' do%><i class="fa-solid fa-circle-user fa-lg"></i>マイページ<% end %></li>

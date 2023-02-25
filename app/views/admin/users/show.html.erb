@@ -25,13 +25,32 @@
           <!--<p class="col">フォロワー<%= @user.followers.count %>人</p>-->
         </div>
         <!--自己紹介文（登録がなければその旨表示）-->
-        <div class="row">
+        <div class="row border-bottom">
           <% if @user.introduction.present? %>
             <p class="col-3">自己紹介文</p>
             <div class="col-9"><%= @user.introduction %></div>
           <% else %>
-            <p>自己紹介文の登録がありません。</p>
+            <p class="col-3">自己紹介文</p>
+            <p class="col-9">自己紹介文の登録がありません。</p>
           <% end %>
+        </div>
+        <!--ユーザーステータス変更用（退会or入会)-->
+        <div class="row">
+            <p class="col-3">ユーザステータス</p>
+            <div class="col-9"><%= @user.user_status %></div>
+            
+              <%= form_with(model:@user, url:admin_withdrawal_path,method: :patch, local: true) do |f| %>
+                <div class="bg-alice border p-2">
+                  <div class="row mx-0">
+                    <%= f.radio_button(:is_deleted, false) %>
+                    <%= f.label(:is_deleted, "有効", value: false) %>
+                    <%= f.radio_button(:is_deleted, true) %>
+                    <%= f.label(:is_deleted, "退会", value: true) %>
+                  </div>
+                  <%= f.submit "ステータスを更新" ,class:"btn btn-primary" %>
+                </div>
+              <% end %>
+            
         </div>
       </div>
       

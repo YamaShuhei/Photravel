@@ -11,7 +11,6 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    # @post_comment=PostComment.new
     @post_tags = @post.tags
     @lat = @post.map.latitude
     @lng = @post.map.longitude
@@ -119,12 +118,9 @@ class Public::PostsController < ApplicationController
     gon.users = User.all
   end
 
-  def ranking
-  end
-
   def search
     @post_counts = Post.search(params[:keyword])
-    @posts = Post.search(params[:keyword]).page(params[:page])
+    @posts = Post.search(params[:keyword]).page(params[:page]).order(created_at: "DESC")
   end
 
 

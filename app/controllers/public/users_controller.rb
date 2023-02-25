@@ -26,13 +26,27 @@ class Public::UsersController < ApplicationController
       render :edit
     end
   end
-
+  
+  # 退会確認画面表示用
+  def unsubscribe
+  end
+  
+  # 退会アクション
+  def withdrawal
+    @user = User.find(params[:id])
+    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました"
+    redirect_to root_path
+  end
 
   private
     def user_params
       params.require(:user).permit(:email, :name, :introduction, :profile_image)
     end
-
+    
+    # ログインユーザーか確認する
     def is_matching_login_user
       user_id = params[:id].to_i
       unless user_id == current_user.id

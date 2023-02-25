@@ -6,14 +6,6 @@ body {
   background-color: #f8f9fa;
 }
 
-input,textarea {
-  -webkit-appearance: none;
-}
-
-input[type="submit"] {
-  -webkit-appearance: none;
-  border-radius: 0;
-}
 
 .bg-alice{
  background: aliceblue;
@@ -575,3 +567,9 @@ a.btn-border {
   left: 5px;
 }
 
+#withdrawal_form{
+  font-size: 20px;
+      @include media-breakpoint-down(md) {
+        font-size: 12px;
+    }
+}

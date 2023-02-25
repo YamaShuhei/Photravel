@@ -13,10 +13,24 @@ class Admin::UsersController < ApplicationController
   def index
     @users = User.all.page(params[:page])
   end
+  
+  def withdrawal
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    flash[:notice] = "ユーザーステータスを更新しました"
+    redirect_to request.referer
+
+  end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
     redirect_to admin_users_path, notice: "ユーザーを削除しました"
+  end
+  
+  private
+  
+  def user_params
+    params.require(:user).permit(:is_deleted)
   end
 end

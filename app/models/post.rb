@@ -46,7 +46,8 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-
+  
+  #検索範囲の設定（投稿タイトルor住所or登録タグのいずれかから検索する）
   def self.search(search)
     if search != ""
       Post.includes(:map, :tags).where(["title LIKE(?) OR caption LIKE(?) OR maps.address LIKE(?) OR tags.name LIKE(?)", "%#{search}%", "%#{search}%", "%#{search}%", "#{search}"]).references(:maps, :tags)
@@ -54,4 +55,6 @@ class Post < ApplicationRecord
       Post.includes(:user).order("created_at DESC")
     end
   end
+  
+  
 end
