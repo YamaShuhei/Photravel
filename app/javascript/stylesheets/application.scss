@@ -450,6 +450,7 @@ a.btn-border {
 #map-info{
   height: 52vh;
 }
+
 // マップページ検索フォーム用
 #form2{
   margin-bottom: 20px;
@@ -469,7 +470,7 @@ a.btn-border {
   }
 }
 
-#address{
+#form2 #address{
   width: 211px;	
   height: 50px;
   padding: 0 10px; 
