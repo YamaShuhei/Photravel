@@ -24,7 +24,7 @@ $(()=>{
 });
 
   
-
+// GoogleMap表示用
 function initMap(){
   
   geocoder = new google.maps.Geocoder()
@@ -81,12 +81,12 @@ function initMap(){
   }
   
 
-
+  // マーカーをクリックしたら情報ウィンドウを表示
   function markerEvent(i){
     marker[i].addListener('click', function(){
       infoWindow[i].open(map, marker[i]);
     });
-  
+  // 情報ウィンドウ表示時、マップ上をクリックしたらウィンドウを畳む
     map.addListener('click', function() {
       infoWindow[i].close(map, marker[i]);
     });
