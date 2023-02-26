@@ -5,7 +5,7 @@ class Public::PostsController < ApplicationController
   before_action :is_matching_login_user, only: [:destroy, :edit, :update]
 
   def index
-    @posts = Post.all.order(created_at: "DESC").page(params[:page]).per(15)
+    @posts = Post.all.order(created_at: "DESC").page(params[:page]).per(25)
     @tags = Tag.all
   end
 
