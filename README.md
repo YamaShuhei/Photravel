@@ -65,6 +65,7 @@
 - JSライブラリ：jQuery
 - IDE：Cloud9
 - API：GOOGLEMAP API(Maps JavaScript API,Geocoding API)
+- デプロイ：GitHub Actions（自動デプロイ）
 
 ## 使用素材
 - 発笑探検隊：http://takuri.realwork.jp/freematerials/2607
