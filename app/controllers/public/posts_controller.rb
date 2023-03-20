@@ -27,6 +27,7 @@ class Public::PostsController < ApplicationController
   end
 
   def new
+    # 新しい投稿を作成する
     @post = Post.new
   end
 
